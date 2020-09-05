@@ -26,14 +26,18 @@
     </v-list>
 
     <!-- Register form -->
-    <v-dialog v-model="dialog" max-width="290"></v-dialog>
+    <v-dialog v-model="dialog" max-width="500">
+      <Register></Register>
+    </v-dialog>
   </div>
 </template>
 
 
 
 <script>
+import Register from "@/components/Register.vue";
 export default {
+  components: { Register },
   data() {
     return {
       items: [

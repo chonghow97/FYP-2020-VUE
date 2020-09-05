@@ -3,15 +3,18 @@
     <!-- App.vue -->
 
     <v-app>
-      <v-navigation-drawer app>
+      <v-navigation-drawer app v-model="drawer">
         <!-- -->
         <Menu></Menu>
       </v-navigation-drawer>
 
-      <v-app-bar app color="blue light-8" dark>
+      <v-app-bar app class="teal lighten-4">
         <!-- -->
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        <v-toolbar-title>Ipoh HomeStay</v-toolbar-title>
+        <v-app-bar-nav-icon @click="drawer= !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>
+          <span class="font-weight-light">Ipoh</span>
+          <span>Homestay</span>
+        </v-toolbar-title>
       </v-app-bar>
 
       <!-- Sizes your content based upon application components -->
@@ -34,6 +37,11 @@
 import Menu from "@/components/Menu.vue";
 export default {
   components: { Menu },
+  data() {
+    return {
+      drawer: true,
+    };
+  },
 };
 </script>
 
