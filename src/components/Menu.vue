@@ -38,17 +38,7 @@
 import Register from "@/components/Register.vue";
 export default {
   components: { Register },
-  data() {
-    return {
-      items: [
-        { title: "Home", icon: "mdi-home", link: "/" },
-        { title: "About", icon: "mdi-help-box", link: "/About" },
-        { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
-      ],
-      right: null,
-      dialog: false,
-    };
-  },
+  props: { items: { title: String, icon: String, link: String } },
   methods: {
     welcome() {
       alert("atest");
