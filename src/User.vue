@@ -22,7 +22,6 @@
         <!-- Provides the application the proper gutter -->
         <v-container fluid>
           <!-- If using vue-router -->
-          <router-view></router-view>
         </v-container>
       </v-main>
 
@@ -45,6 +44,8 @@ export default {
         { title: "Home", icon: "mdi-home", link: "/" },
         { title: "About", icon: "mdi-help-box", link: "/About" },
         { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
+        { title: "Chat", icon: "mdi-chat", link: "/Chat" },
+        { title: "Chat", icon: "mdi-chat", link: "/Chat" },
       ],
       right: null,
       dialog: false,

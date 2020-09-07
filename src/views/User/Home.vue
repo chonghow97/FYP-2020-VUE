@@ -1,9 +1,13 @@
 <template>
-  <div id="home"></div>
+  <div id="home">
+    <h1>hellow rold</h1>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "home",
+};
 </script>
 
 <style>
