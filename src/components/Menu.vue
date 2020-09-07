@@ -38,6 +38,9 @@
 import Register from "@/components/Register.vue";
 export default {
   components: { Register },
+  data: () => ({
+    dialog: false,
+  }),
   props: { items: { title: String, icon: String, link: String } },
   methods: {
     welcome() {

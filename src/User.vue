@@ -3,7 +3,7 @@
     <!-- App.vue -->
 
     <v-app>
-      <v-navigation-drawer app v-model="drawer">
+      <v-navigation-drawer app v-model="drawer" color="primary" dark>
         <!-- -->
         <Menu :items="items"></Menu>
       </v-navigation-drawer>
@@ -44,11 +44,9 @@ export default {
         { title: "Home", icon: "mdi-home", link: "/" },
         { title: "About", icon: "mdi-help-box", link: "/About" },
         { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
-        { title: "Chat", icon: "mdi-chat", link: "/Chat" },
-        { title: "Chat", icon: "mdi-chat", link: "/Chat" },
       ],
       right: null,
-      dialog: false,
+      dialog: true,
       drawer: true,
     };
   },
