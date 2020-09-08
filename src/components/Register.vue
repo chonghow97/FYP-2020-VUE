@@ -15,7 +15,6 @@
                 required
               ></v-text-field>
             </v-col>
-
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="lastname"
@@ -38,7 +37,7 @@
               ></v-select>
             </v-col>
             <v-col cols="12" md="9">
-              <v-text-field v-model="firstname" :rules="nameRules" :counter="10" required></v-text-field>
+              <v-text-field v-model="number" :rules="numberRules" :counter="10" required></v-text-field>
             </v-col>
           </v-row>
           <v-checkbox
@@ -65,6 +64,9 @@
 <script>
 export default {
   data: () => ({
+    firstname: "Loh",
+    lastname: "Kean Ming",
+    number: "18421368",
     valid: true,
     name: "",
     nameRules: [
@@ -76,14 +78,36 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-    select: null,
+    select: "+60",
     items: ["+60"],
+    numberRules: [
+      (v) => !!v || "E-mail is required",
+      (v) => (v && v.length >= 9) || "Name must be more than 9 characters",
+    ],
     checkbox: false,
   }),
 
+  computed: {
+    newUser: function () {
+      const user = [
+        {
+          fName: this.firstname,
+          lName: this.lastname,
+          email: this.email,
+          code: this.select,
+          phone: this.number,
+        },
+      ];
+      return user;
+    },
+  },
+
   methods: {
     validate() {
-      this.$refs.form.validate();
+      if (!this.$refs.form.validate()) {
+        console.log(typeof this.newUser);
+        console.log(this.newUser);
+      }
     },
     reset() {
       this.$refs.form.reset();
