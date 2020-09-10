@@ -66,14 +66,14 @@ export default {
   data: () => ({
     firstname: "Loh",
     lastname: "Kean Ming",
-    number: "18421368",
+    number: "184213618",
     valid: true,
     name: "",
     nameRules: [
       (v) => !!v || "Name is required",
       (v) => (v && v.length <= 30) || "Name must be less than 10 characters",
     ],
-    email: "",
+    email: "keanming@gmail.com",
     emailRules: [
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -84,29 +84,27 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => (v && v.length >= 9) || "Name must be more than 9 characters",
     ],
-    checkbox: false,
+    checkbox: true,
   }),
 
   computed: {
     newUser: function () {
-      const user = [
-        {
-          fName: this.firstname,
-          lName: this.lastname,
-          email: this.email,
-          code: this.select,
-          phone: this.number,
-        },
-      ];
+      const user = {
+        fName: this.firstname,
+        lName: this.lastname,
+        email: this.email,
+        code: this.select,
+        phone: this.number,
+      };
       return user;
     },
   },
 
   methods: {
     validate() {
-      if (!this.$refs.form.validate()) {
-        console.log(typeof this.newUser);
+      if (this.$refs.form.validate()) {
         console.log(this.newUser);
+        this.$http.post("http://localhost:3000/users/", this.newUser);
       }
     },
     reset() {

@@ -4,8 +4,8 @@ import router from "./router";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
 
-Vue.config.productionTip = true;
 Vue.prototype.$http = axios;
+Vue.config.productionTip = true;
 new Vue({
   router,
   vuetify,

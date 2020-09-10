@@ -43,7 +43,7 @@ export default {
     return {
       items: [
         { title: "Dashboard", icon: "mdi-home", link: "/" },
-        { title: "About", icon: "mdi-help-box", link: "/About" },
+        { title: "Calendar", icon: "mdi-calendar", link: "/Calender" },
         { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
       ],
       right: null,
