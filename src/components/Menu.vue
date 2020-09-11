@@ -1,12 +1,22 @@
 <template>
   <div id="menu">
-    <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true">
+    <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-if="login">
       <v-list-item-avatar>
         <img src="https://randomuser.me/api/portraits/men/81.jpg" />
       </v-list-item-avatar>
 
       <v-list-item-content>
         <v-list-item-title>Sign in</v-list-item-title>
+        <v-list-item-subtitle>Customer</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-else>
+      <v-list-item-avatar>
+        <img src="https://randomuser.me/api/portraits/men/82.jpg" />
+      </v-list-item-avatar>
+
+      <v-list-item-content>
+        <v-list-item-title>Alex Becker</v-list-item-title>
         <v-list-item-subtitle>Customer</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
@@ -39,10 +49,14 @@ import Register from "@/components/Register.vue";
 export default {
   components: { Register },
   data: () => ({
+    login: true,
     dialog: false,
   }),
   props: { items: { title: String, icon: String, link: String } },
   methods: {
+    login(a) {
+      this.login = a;
+    },
     welcome() {
       alert("atest");
     },
