@@ -1,11 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import User from "@/User.vue";
-import Admin from "../views/Admin/Home.vue";
+import Admin from "../Admin.vue";
 import Home from "@/views/User/Home.vue";
 import About from "@/views/User/About.vue";
 import Gallery from "@/views/User/Gallery.vue";
 import Chat from "@/views/User/Chat.vue";
+import Calendar from "@/views/Admin/Calendar.vue";
+import Dashboard from "@/views/Admin/Dashboard.vue";
 
 Vue.use(VueRouter);
 
@@ -40,6 +42,18 @@ const routes = [
     path: "/admin",
     name: "Admin",
     component: Admin,
+    children: [
+      {
+        name: "Dashboard",
+        path: "/Dashboard",
+        component: Dashboard,
+      },
+      {
+        name: "Calender",
+        path: "/Calender",
+        component: Calendar,
+      },
+    ],
   },
 ];
 

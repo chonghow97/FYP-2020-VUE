@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       items: [
-        { title: "Dashboard", icon: "mdi-home", link: "/" },
+        { title: "Dashboard", icon: "mdi-home", link: "/Dashboard" },
         { title: "Calendar", icon: "mdi-calendar", link: "/Calender" },
         { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
       ],
