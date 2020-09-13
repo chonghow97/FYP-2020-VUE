@@ -1,8 +1,14 @@
 <template>
   <div id="menu">
-    <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-if="!login">
+    <v-list-item
+      two-line
+      :class="miniVariant && 'px-0'"
+      @click.stop="dialog = true"
+      v-if="!login"
+      @update="welcome"
+    >
       <v-list-item-avatar>
-        <v-icon>{{ svgPath }}</v-icon>
+        <v-icon>{{ Default_Profile }}</v-icon>
       </v-list-item-avatar>
 
       <v-list-item-content>
@@ -50,13 +56,10 @@ export default {
   data: () => ({
     login: false,
     dialog: false,
-    svgPath: "mdi-account-circle",
+    Default_Profile: "mdi-account-circle",
   }),
   props: { items: { title: String, icon: String, link: String } },
   methods: {
-    login(a) {
-      this.login = a;
-    },
     welcome() {
       alert("atest");
     },
