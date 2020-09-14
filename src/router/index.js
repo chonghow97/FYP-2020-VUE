@@ -8,6 +8,7 @@ import Gallery from "@/views/User/Gallery.vue";
 import Chat from "@/views/User/Chat.vue";
 import Calendar from "@/views/Admin/Calendar.vue";
 import Dashboard from "@/views/Admin/Dashboard.vue";
+import Homestay from "@/views/Admin/Homestay.vue";
 
 Vue.use(VueRouter);
 
@@ -49,9 +50,14 @@ const routes = [
         component: Dashboard,
       },
       {
-        name: "Calender",
-        path: "/Calender",
+        name: "Calendar",
+        path: "/Calendar",
         component: Calendar,
+      },
+      {
+        name: "Homestay",
+        path: "/Homestay",
+        component: Homestay,
       },
     ],
   },

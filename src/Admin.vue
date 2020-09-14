@@ -6,6 +6,12 @@
       <v-navigation-drawer app v-model="drawer">
         <!-- -->
         <Menu :items="items"></Menu>
+        <template v-slot:append>
+          <div>
+            <v-spacer></v-spacer>
+            <v-btn block>Logout</v-btn>
+          </div>
+        </template>
       </v-navigation-drawer>
 
       <v-app-bar app class="teal lighten-4">
@@ -42,9 +48,13 @@ export default {
   data() {
     return {
       items: [
-        { title: "Dashboard", icon: "mdi-home", link: "/Dashboard" },
-        { title: "Calendar", icon: "mdi-calendar", link: "/Calender" },
-        { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
+        {
+          title: "Dashboard",
+          icon: "mdi-monitor-dashboard",
+          link: "/Dashboard",
+        },
+        { title: "HomeStay", icon: "mdi-home-account", link: "/Homestay" },
+        { title: "Calendar", icon: "mdi-calendar", link: "/Calendar" },
       ],
       right: null,
       dialog: false,

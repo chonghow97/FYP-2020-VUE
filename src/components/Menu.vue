@@ -1,11 +1,12 @@
 <template>
   <div id="menu">
+    <!-- not login -->
     <v-list-item
       two-line
       :class="miniVariant && 'px-0'"
       @click.stop="dialog = true"
       v-if="!login"
-      @update="welcome"
+      :islogin="islogin()"
     >
       <v-list-item-avatar>
         <v-icon>{{ Default_Profile }}</v-icon>
@@ -15,6 +16,8 @@
         <v-list-item-title>Sign in</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
+
+    <!-- is-login -->
     <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-else>
       <v-list-item-avatar>
         <img src="https://randomuser.me/api/portraits/men/82.jpg" />
@@ -42,7 +45,16 @@
 
     <!-- Register form -->
     <v-dialog v-model="dialog" max-width="500">
-      <Register></Register>
+      <v-tabs>
+        <v-tab>Sign In</v-tab>
+        <v-tab :model="Tab">Register</v-tab>
+        <v-tab-item :model="Tab">
+          <Signin></Signin>
+        </v-tab-item>
+        <v-tab-item :model="Tab">
+          <Register></Register>
+        </v-tab-item>
+      </v-tabs>
     </v-dialog>
   </div>
 </template>
@@ -51,8 +63,9 @@
 
 <script>
 import Register from "@/components/Register.vue";
+import Signin from "@/components/Signin.vue";
 export default {
-  components: { Register },
+  components: { Register, Signin },
   data: () => ({
     login: false,
     dialog: false,
@@ -62,6 +75,9 @@ export default {
   methods: {
     welcome() {
       alert("atest");
+    },
+    islogin(a) {
+      console.log(a);
     },
   },
 };

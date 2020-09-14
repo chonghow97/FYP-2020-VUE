@@ -1,7 +1,5 @@
 <template>
   <v-card>
-    <v-card-title class="headline grey lighten-2">Register</v-card-title>
-
     <v-card-text>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-container>
@@ -118,13 +116,12 @@ export default {
 
   methods: {
     validate() {
+      // this.$refs.form.validate();
       // if (this.$refs.form.validate()) {
       //   console.log(this.newUser);
       //   this.$http.post("http://localhost:3000/users/", this.newUser);
       // }
-      // this.$emit("update");
-      // this.$refs.form.validate();
-      console.log(this.$refs.form.value);
+      this.$emit("islogin", "true");
     },
     reset() {
       this.$refs.form.reset();
