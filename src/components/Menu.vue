@@ -7,6 +7,7 @@
       @click.stop="dialog = true"
       v-if="!login"
       :islogin="islogin()"
+      @update="welcome"
     >
       <v-list-item-avatar>
         <v-icon>{{ Default_Profile }}</v-icon>
