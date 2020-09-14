@@ -25,8 +25,24 @@
               ></v-text-field>
             </v-col>
           </v-row>
+          <v-row>
+            <v-col>
+              <v-text-field
+                v-model="password"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="passRules"
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label=" Password"
+                hint="At least 8 characters"
+                counter
+                @click:append="show1 = !show1"
+              ></v-text-field>
+            </v-col>
+          </v-row>
 
-          <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>Mobile Number
+          <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+          <v-row>Mobile Number</v-row>
           <v-row>
             <v-col cols="12" md="3">
               <v-select
@@ -102,10 +118,13 @@ export default {
 
   methods: {
     validate() {
-      if (this.$refs.form.validate()) {
-        console.log(this.newUser);
-        this.$http.post("http://localhost:3000/users/", this.newUser);
-      }
+      // if (this.$refs.form.validate()) {
+      //   console.log(this.newUser);
+      //   this.$http.post("http://localhost:3000/users/", this.newUser);
+      // }
+      // this.$emit("update");
+      // this.$refs.form.validate();
+      console.log(this.$refs.form.value);
     },
     reset() {
       this.$refs.form.reset();
