@@ -1,14 +1,7 @@
 <template>
   <div id="menu">
     <!-- not login -->
-    <v-list-item
-      two-line
-      :class="miniVariant && 'px-0'"
-      @click.stop="dialog = true"
-      v-if="!login"
-      :islogin="islogin()"
-      @update="welcome"
-    >
+    <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-if="!login">
       <v-list-item-avatar>
         <v-icon>{{ Default_Profile }}</v-icon>
       </v-list-item-avatar>
@@ -53,7 +46,7 @@
           <Signin></Signin>
         </v-tab-item>
         <v-tab-item :model="Tab">
-          <Register></Register>
+          <Register v-on:login="Login"></Register>
         </v-tab-item>
       </v-tabs>
     </v-dialog>
@@ -74,11 +67,8 @@ export default {
   }),
   props: { items: { title: String, icon: String, link: String } },
   methods: {
-    welcome() {
-      alert("atest");
-    },
-    islogin(a) {
-      console.log(a);
+    Login: function (a) {
+      this.login = a;
     },
   },
 };

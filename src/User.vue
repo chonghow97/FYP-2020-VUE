@@ -3,9 +3,15 @@
     <!-- App.vue -->
 
     <v-app>
-      <v-navigation-drawer app v-model="drawer" color="primary" dark>
+      <v-navigation-drawer app v-model="drawer">
         <!-- -->
         <Menu :items="items"></Menu>
+        <template v-slot:append>
+          <div>
+            <v-spacer></v-spacer>
+            <v-btn block>Logout</v-btn>
+          </div>
+        </template>
       </v-navigation-drawer>
 
       <v-app-bar app class="teal lighten-4">
