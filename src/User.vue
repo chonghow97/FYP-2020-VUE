@@ -5,11 +5,11 @@
     <v-app>
       <v-navigation-drawer app v-model="drawer">
         <!-- -->
-        <Menu :items="items"></Menu>
-        <template v-slot:append>
+        <Menu :items="items" :login="login" @login="login1"></Menu>
+        <template v-slot:append v-if="login">
           <div>
             <v-spacer></v-spacer>
-            <v-btn block>Logout</v-btn>
+            <v-btn block @click="logout">Logout</v-btn>
           </div>
         </template>
       </v-navigation-drawer>
@@ -55,8 +55,18 @@ export default {
       right: null,
       dialog: true,
       drawer: true,
+      login: false,
     };
   },
+  methods: {
+    login1: function (event) {
+      this.login = event;
+    },
+    logout: function () {
+      this.login = false;
+    },
+  },
+  mounted: {},
 };
 </script>
 

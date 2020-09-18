@@ -2,7 +2,8 @@
   <div id="home">
     <v-container class="grey lighten-5">
       <v-row>
-        <v-col>
+        <v-col cols="12" md="6">
+          <!-- Carousel -->
           <v-carousel hide-delimiter-background show-arrows-on-hover>
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
               <v-sheet :color="colors[i]" height="100%">
@@ -13,33 +14,27 @@
             </v-carousel-item>
           </v-carousel>
         </v-col>
-        <v-col>
+        <v-col cols="12" md="6">
+          <!-- Reservation form -->
+
           <v-card max-width="500" tile elevation="10" class="mx-auto">
             <v-card-title>Reservation</v-card-title>
             <v-card-text>
               <v-form ref="form" v-model="valid" lazy-validation>
-                <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
-
-                <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
-
+                <v-row>
+                  <v-col cols="12" md="12">
+                    <Reservation label="Reservation Date"></Reservation>
+                  </v-col>
+                </v-row>
                 <v-select
                   v-model="select"
                   :items="items"
                   :rules="[v => !!v || 'Item is required']"
-                  label="Item"
+                  label="Choose HomeStay"
                   required
                 ></v-select>
 
-                <v-checkbox
-                  v-model="checkbox"
-                  :rules="[v => !!v || 'You must agree to continue!']"
-                  label="Do you agree?"
-                  required
-                ></v-checkbox>
-
-                <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
-
-                <v-btn color="warning" @click="resetValidation">Reset Validation</v-btn>
+                <v-btn color="success" class="mr-4" @click="validate">Validate</v-btn>
               </v-form>
             </v-card-text>
           </v-card>
@@ -50,8 +45,10 @@
 </template>
 
 <script>
+import Reservation from "@/components/Reservation.vue";
 export default {
   name: "home",
+  components: { Reservation },
   data() {
     return {
       colors: [

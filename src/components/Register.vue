@@ -121,7 +121,6 @@ export default {
       //   console.log(this.newUser);
       //   this.$http.post("http://localhost:3000/users/", this.newUser);
       // }
-      this.$emit("login", "true");
     },
     reset() {
       this.$refs.form.reset();

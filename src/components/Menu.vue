@@ -43,10 +43,10 @@
         <v-tab>Sign In</v-tab>
         <v-tab :model="Tab">Register</v-tab>
         <v-tab-item :model="Tab">
-          <Signin></Signin>
+          <Signin @login="Login"></Signin>
         </v-tab-item>
         <v-tab-item :model="Tab">
-          <Register v-on:login="Login"></Register>
+          <Register></Register>
         </v-tab-item>
       </v-tabs>
     </v-dialog>
@@ -61,14 +61,17 @@ import Signin from "@/components/Signin.vue";
 export default {
   components: { Register, Signin },
   data: () => ({
-    login: false,
     dialog: false,
     Default_Profile: "mdi-account-circle",
   }),
-  props: { items: { title: String, icon: String, link: String } },
+  props: {
+    items: { title: String, icon: String, link: String },
+    login: Boolean,
+  },
   methods: {
     Login: function (a) {
       this.login = a;
+      this.$emit("login", a);
     },
   },
 };

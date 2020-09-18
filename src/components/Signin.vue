@@ -38,7 +38,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    validate: function () {
+      this.$emit("login", "true");
+    },
+  },
+};
 </script>
 
 <style>

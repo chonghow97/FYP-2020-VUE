@@ -4,33 +4,6 @@
       <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
-      <v-select
-        v-model="type"
-        :items="types"
-        dense
-        outlined
-        hide-details
-        class="ma-2"
-        label="month"
-      ></v-select>
-      <v-select
-        v-model="type"
-        :items="types"
-        dense
-        outlined
-        hide-details
-        class="ma-2"
-        label="month"
-      ></v-select>
-      <v-select
-        v-model="type"
-        :items="types"
-        dense
-        outlined
-        hide-details
-        class="ma-2"
-        label="month"
-      ></v-select>
 
       <v-btn icon class="ma-2" @click="$refs.calendar.next()">
         <v-icon>mdi-chevron-right</v-icon>
@@ -56,9 +29,6 @@
 export default {
   data: () => ({
     type: "month",
-    types: ["month", "week", "day", "4day"],
-    mode: "stack",
-    modes: ["stack", "column"],
     weekday: [0, 1, 2, 3, 4, 5, 6],
     weekdays: [
       { text: "Sun - Sat", value: [0, 1, 2, 3, 4, 5, 6] },
