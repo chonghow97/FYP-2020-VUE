@@ -9,6 +9,7 @@ import Chat from "@/views/User/Chat.vue";
 import Calendar from "@/views/Admin/Calendar.vue";
 import Dashboard from "@/views/Admin/Dashboard.vue";
 import Homestay from "@/views/Admin/Homestay.vue";
+import galleryDetail from "@/views/User/galleryDetail.vue";
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,10 @@ const routes = [
         path: "/gallery",
         name: "gallery",
         component: Gallery,
+      },
+      {
+        path: "/gallery/:id",
+        component: galleryDetail,
       },
       {
         path: "/chat",
