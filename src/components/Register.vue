@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data: () => ({
     firstname: "Loh",
@@ -116,11 +117,11 @@ export default {
 
   methods: {
     validate() {
-      // this.$refs.form.validate();
-      // if (this.$refs.form.validate()) {
-      //   console.log(this.newUser);
-      //   this.$http.post("http://localhost:3000/users/", this.newUser);
-      // }
+      this.$refs.form.validate();
+      if (this.$refs.form.validate()) {
+        console.log(this.newUser);
+        axios.post("http://localhost:3000/users/", this.newUser);
+      }
     },
     reset() {
       this.$refs.form.reset();
