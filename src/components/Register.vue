@@ -39,24 +39,34 @@
             </v-col>
           </v-row>
 
-          <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="E-mail"
+            required
+          ></v-text-field>
           <v-row>Mobile Number</v-row>
           <v-row>
             <v-col cols="12" md="3">
               <v-select
                 v-model="select"
                 :items="items"
-                :rules="[v => !!v || 'Item is required']"
+                :rules="[(v) => !!v || 'Item is required']"
                 required
               ></v-select>
             </v-col>
             <v-col cols="12" md="9">
-              <v-text-field v-model="number" :rules="numberRules" :counter="10" required></v-text-field>
+              <v-text-field
+                v-model="number"
+                :rules="numberRules"
+                :counter="10"
+                required
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-checkbox
             v-model="checkbox"
-            :rules="[v => !!v || 'You must agree to continue!']"
+            :rules="[(v) => !!v || 'You must agree to continue!']"
             label="Do you agree?"
             required
           ></v-checkbox>
@@ -77,31 +87,31 @@
 
 <script>
 import axios from "axios";
+const data = {
+  firstname: "Loh",
+  lastname: "Kean Ming",
+  number: "184213618",
+  valid: true,
+  name: "",
+  nameRules: [
+    (v) => !!v || "Name is required",
+    (v) => (v && v.length <= 30) || "Name must be less than 10 characters",
+  ],
+  email: "keanming@gmail.com",
+  emailRules: [
+    (v) => !!v || "E-mail is required",
+    (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+  ],
+  select: "+60",
+  items: ["+60"],
+  numberRules: [
+    (v) => !!v || "E-mail is required",
+    (v) => (v && v.length >= 9) || "Name must be more than 9 characters",
+  ],
+  checkbox: true,
+};
 export default {
-  data: () => ({
-    firstname: "Loh",
-    lastname: "Kean Ming",
-    number: "184213618",
-    valid: true,
-    name: "",
-    nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => (v && v.length <= 30) || "Name must be less than 10 characters",
-    ],
-    email: "keanming@gmail.com",
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
-    select: "+60",
-    items: ["+60"],
-    numberRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => (v && v.length >= 9) || "Name must be more than 9 characters",
-    ],
-    checkbox: true,
-  }),
-
+  data,
   computed: {
     newUser: function () {
       const user = {

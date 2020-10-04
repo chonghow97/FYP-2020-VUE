@@ -5,7 +5,7 @@
         <v-container>
           <v-row>
             <v-col>
-              <v-text-field v-model="firstname" label="First name" required></v-text-field>
+              <v-text-field v-model="Email" label="Email" required :rules="emailRules"></v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -17,13 +17,11 @@
                 name="input-10-1"
                 label=" Password"
                 hint="At least 8 characters"
-                counter
+                :rules="passwordRules"
                 @click:append="show1 = !show1"
               ></v-text-field>
             </v-col>
           </v-row>
-
-          <v-checkbox v-model="checkbox" label="Keep me logged in" required></v-checkbox>
         </v-container>
       </v-form>
     </v-card-text>
@@ -32,16 +30,41 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" text @click="validate">Sign In</v-btn>
+      <v-btn color="primary" text @click="Login">Sign In</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data() {
+    return {
+      Email: "",
+      password: "",
+      emailRules: [
+        (v) => !!v || "Email is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      passwordRules: [
+        (v) => !!v || "Password is required",
+        (v) => (v && v.length >= 8) || "Name must be more than 8 characters",
+      ],
+    };
+  },
   methods: {
-    validate: function () {
-      this.$emit("login", "true");
+    Login: function () {
+      axios.post("localhost:3000/users", this.UserAccount);
+      console.log(this.UserAccount);
+    },
+  },
+  computed: {
+    UserAccount: function () {
+      const User = {
+        Email: this.Email,
+        Password: this.password,
+      };
+      return User;
     },
   },
 };

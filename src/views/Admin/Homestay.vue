@@ -2,8 +2,10 @@
   <div id="homestay">
     <v-container>
       <v-row justify="center">
-        <v-btn color="primary" dark @click.stop="dialog = true">Add Homestay</v-btn>
-        <v-dialog v-model="dialog" max-width="290">
+        <v-btn color="primary" dark @click.stop="dialog = true"
+          >Add Homestay</v-btn
+        >
+        <v-dialog v-model="dialog" max-width="500">
           <v-card>
             <v-card-title class="headline">Add Homestay</v-card-title>
 
@@ -13,8 +15,6 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-
-              <v-btn color="primary darken-1" text @click="dialog = false">close</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>

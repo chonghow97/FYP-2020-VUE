@@ -5,7 +5,7 @@
     <v-app>
       <v-navigation-drawer app v-model="drawer">
         <!-- -->
-        <Menu :items="items" :login="login" @login="login1"></Menu>
+        <Drawer :items="items" :login="login" @login="login1"></Drawer>
         <template v-slot:append v-if="login">
           <div>
             <v-spacer></v-spacer>
@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import Menu from "@/components/Menu.vue";
+import Drawer from "@/components/Drawer.vue";
 export default {
   name: "App",
 
-  components: { Menu },
+  components: { Drawer },
   data() {
     return {
       items: [

@@ -1,5 +1,5 @@
 <template>
-  <div id="menu">
+  <section id="menu">
     <!-- not login -->
     <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-if="!login">
       <v-list-item-avatar>
@@ -25,17 +25,7 @@
 
     <v-divider></v-divider>
 
-    <v-list dense nav>
-      <v-list-item v-for="item in items" :key="item.title" link :to="item.link">
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+    <MenuList :items="items"></MenuList>
 
     <!-- Register form -->
     <v-dialog v-model="dialog" max-width="500">
@@ -50,7 +40,7 @@
         </v-tab-item>
       </v-tabs>
     </v-dialog>
-  </div>
+  </section>
 </template>
 
 
@@ -58,8 +48,9 @@
 <script>
 import Register from "@/components/Register.vue";
 import Signin from "@/components/Signin.vue";
+import MenuList from "@/components/MenuList.vue";
 export default {
-  components: { Register, Signin },
+  components: { Register, Signin, MenuList },
   data: () => ({
     dialog: false,
     Default_Profile: "mdi-account-circle",
