@@ -5,7 +5,7 @@
     <v-app>
       <v-navigation-drawer app v-model="drawer">
         <!-- -->
-        <Drawer :items="items"></Drawer>
+        <Drawer :items="allAdminMenus"></Drawer>
         <template v-slot:append>
           <div>
             <v-spacer></v-spacer>
@@ -16,7 +16,7 @@
 
       <v-app-bar app class="teal lighten-4">
         <!-- -->
-        <v-app-bar-nav-icon @click="drawer= !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <span class="font-weight-light">Ipoh</span>
           <span>Homestay</span>
@@ -41,26 +41,19 @@
 
 <script>
 import Drawer from "@/components/Drawer.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "App",
 
   components: { Drawer },
   data() {
     return {
-      items: [
-        {
-          title: "Dashboard",
-          icon: "mdi-monitor-dashboard",
-          link: "/Dashboard",
-        },
-        { title: "HomeStay", icon: "mdi-home-account", link: "/Homestay" },
-        { title: "Calendar", icon: "mdi-calendar", link: "/Calendar" },
-      ],
       right: null,
       dialog: false,
       drawer: true,
     };
   },
+  computed: { ...mapGetters(["allAdminMenus"]) },
 };
 </script>
 

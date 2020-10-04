@@ -5,7 +5,7 @@
     <v-app>
       <v-navigation-drawer app v-model="drawer">
         <!-- -->
-        <Drawer :items="items" :login="login" @login="login1"></Drawer>
+        <Drawer :items="allMenus" :login="login" @login="login1"></Drawer>
         <template v-slot:append v-if="login">
           <div>
             <v-spacer></v-spacer>
@@ -16,7 +16,7 @@
 
       <v-app-bar app class="teal lighten-4">
         <!-- -->
-        <v-app-bar-nav-icon @click="drawer= !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <span class="font-weight-light">Ipoh</span>
           <span>Homestay</span>
@@ -41,23 +41,17 @@
 
 <script>
 import Drawer from "@/components/Drawer.vue";
+import { mapGetters } from "vuex";
+const data = {
+  right: null,
+  dialog: true,
+  drawer: true,
+  login: false,
+};
 export default {
   name: "App",
-
   components: { Drawer },
-  data() {
-    return {
-      items: [
-        { title: "Home", icon: "mdi-home", link: "/" },
-        { title: "About", icon: "mdi-help-box", link: "/About" },
-        { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
-      ],
-      right: null,
-      dialog: true,
-      drawer: true,
-      login: false,
-    };
-  },
+  data: () => data,
   methods: {
     login1: function (event) {
       this.login = event;
@@ -66,7 +60,7 @@ export default {
       this.login = false;
     },
   },
-  mounted: {},
+  computed: mapGetters(["allMenus"]),
 };
 </script>
 
