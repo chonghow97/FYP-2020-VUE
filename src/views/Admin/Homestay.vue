@@ -10,7 +10,7 @@
             <v-card-title class="headline">Add Homestay</v-card-title>
 
             <v-card-text>
-              <Add_homestay></Add_homestay>
+              <AddHomestay></AddHomestay>
             </v-card-text>
 
             <v-card-actions>
@@ -40,9 +40,9 @@
 
 
 <script>
-import Add_homestay from "@/components/Add_homestay";
+import AddHomestay from "@/components/AddHomestay";
 export default {
-  components: { Add_homestay },
+  components: { AddHomestay },
   data() {
     return {
       dialog: false,

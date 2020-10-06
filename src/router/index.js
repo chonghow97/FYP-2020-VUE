@@ -10,10 +10,16 @@ import Calendar from "@/views/Admin/Calendar.vue";
 import Dashboard from "@/views/Admin/Dashboard.vue";
 import Homestay from "@/views/Admin/Homestay.vue";
 import galleryDetail from "@/views/User/galleryDetail.vue";
+import Login from "@/views/Admin/login.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    name: "Login",
+    path: "admin/login",
+    component: Login,
+  },
   {
     path: "/",
     component: User,

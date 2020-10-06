@@ -1,7 +1,7 @@
 <template>
   <section id="menu">
     <!-- not login -->
-    <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-if="!login">
+    <v-list-item two-line @click.stop="dialog = true" v-if="!login">
       <v-list-item-avatar>
         <v-icon>{{ Default_Profile }}</v-icon>
       </v-list-item-avatar>
@@ -12,7 +12,7 @@
     </v-list-item>
 
     <!-- is-login -->
-    <v-list-item two-line :class="miniVariant && 'px-0'" @click.stop="dialog = true" v-else>
+    <v-list-item two-line @click.stop="dialog = true" v-else>
       <v-list-item-avatar>
         <img src="https://randomuser.me/api/portraits/men/82.jpg" />
       </v-list-item-avatar>
@@ -31,11 +31,11 @@
     <v-dialog v-model="dialog" max-width="500">
       <v-tabs>
         <v-tab>Sign In</v-tab>
-        <v-tab :model="Tab">Register</v-tab>
-        <v-tab-item :model="Tab">
+        <v-tab>Register</v-tab>
+        <v-tab-item>
           <Signin @login="Login"></Signin>
         </v-tab-item>
-        <v-tab-item :model="Tab">
+        <v-tab-item>
           <Register></Register>
         </v-tab-item>
       </v-tabs>
@@ -49,12 +49,13 @@
 import Register from "@/components/Register.vue";
 import Signin from "@/components/Signin.vue";
 import MenuList from "@/components/MenuList.vue";
+const data = {
+  dialog: false,
+  Default_Profile: "mdi-account-circle",
+};
 export default {
   components: { Register, Signin, MenuList },
-  data: () => ({
-    dialog: false,
-    Default_Profile: "mdi-account-circle",
-  }),
+  data: () => data,
   props: {
     items: { title: String, icon: String, link: String },
     login: Boolean,

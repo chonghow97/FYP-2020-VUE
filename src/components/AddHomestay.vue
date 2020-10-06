@@ -2,7 +2,7 @@
   <div id="add">
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
-        v-model="name"
+        v-model="Homestay.name"
         :counter="30"
         :rules="[(v) => !!v || 'Homestay is required']"
         label="Homestay Name"
@@ -10,45 +10,41 @@
       ></v-text-field>
 
       <v-select
-        v-model="select"
+        v-model="Homestay.capacity"
         :items="Capacity"
         :rules="[(v) => !!v || 'Capacity is required']"
         label="Capacity"
         required
       ></v-select>
       <v-textarea
-        v-model="description"
+        v-model="Homestay.description"
         label="Description"
         counter
         full-width
         single-line
       ></v-textarea>
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate"
-        >Add</v-btn
-      >
+      <v-btn color="success" class="mr-4" @click="getDummy()">Add</v-btn>
     </v-form>
   </div>
 </template>
 
 <script>
-const data = {
-  dialog: true,
-  Capacity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  select: "1",
-  name: "",
-  description: "",
-};
+import { mapActions, mapGetters } from "vuex";
 export default {
-  data: () => data,
-  method: {},
+  name: "AddHomestay",
+  data() {
+    return {
+      dialog: true,
+      Capacity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      select: "1",
+      name: "",
+      description: "",
+      valid: "",
+    };
+  },
+  methods: { ...mapActions(["getDummy"]) },
   computed: {
-    Homestay() {
-      return {
-        name: this.name,
-        capacity: this.Capacity,
-        description: this.description,
-      };
-    },
+    ...mapGetters(["Homestay"]),
   },
 };
 </script>
