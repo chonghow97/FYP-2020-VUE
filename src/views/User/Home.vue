@@ -1,23 +1,24 @@
 <template>
   <div id="home">
-    <v-container class="grey lighten-5">
+    <v-img
+      lazy-src="https://picsum.photos/id/11/10/6"
+      max-height="320px"
+      max-width="100%"
+      src="https://picsum.photos/id/11/500/300"
+      transition="fade-transition"
+    ></v-img>
+    <v-container>
       <v-row>
-        <v-col cols="12" md="6">
-          <!-- Carousel -->
-          <v-carousel hide-delimiter-background show-arrows-on-hover>
-            <v-carousel-item v-for="(slide, i) in slides" :key="i">
-              <v-sheet :color="colors[i]" height="100%">
-                <v-row class="fill-height" align="center" justify="center">
-                  <div class="display-3">{{ slide }} Slide</div>
-                </v-row>
-              </v-sheet>
-            </v-carousel-item>
-          </v-carousel>
-        </v-col>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="12">
           <!-- Reservation form -->
 
-          <v-card max-width="500" tile elevation="10" class="mx-auto">
+          <v-card
+            max-width="100%"
+            tile
+            elevation="10"
+            class="mx-auto"
+            color="teal lighten-5"
+          >
             <v-card-title>Reservation</v-card-title>
             <v-card-text>
               <v-form ref="form" v-model="valid" lazy-validation>
@@ -29,12 +30,14 @@
                 <v-select
                   v-model="select"
                   :items="items"
-                  :rules="[v => !!v || 'Item is required']"
+                  :rules="[(v) => !!v || 'Item is required']"
                   label="Choose HomeStay"
                   required
                 ></v-select>
 
-                <v-btn color="success" class="mr-4" @click="validate">Validate</v-btn>
+                <v-btn color="blue lighten-4" class="mr-4" @click="validate"
+                  >Order</v-btn
+                >
               </v-form>
             </v-card-text>
           </v-card>

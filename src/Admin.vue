@@ -3,20 +3,23 @@
     <!-- App.vue -->
 
     <v-app>
-      <v-navigation-drawer app v-model="drawer">
+      <v-navigation-drawer app v-model="drawer" class="pink lighten-4" dark>
         <!-- -->
         <Drawer :items="allAdminMenus"></Drawer>
         <template v-slot:append>
           <div>
             <v-spacer></v-spacer>
-            <v-btn block>Logout</v-btn>
+            <v-btn block class="red lighten-1 white--text">Logout</v-btn>
           </div>
         </template>
       </v-navigation-drawer>
 
-      <v-app-bar app class="teal lighten-4">
+      <v-app-bar app class="pink lighten-3 white--text">
         <!-- -->
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          @click="drawer = !drawer"
+          class="white--text"
+        ></v-app-bar-nav-icon>
         <v-toolbar-title>
           <span class="font-weight-light">Ipoh</span>
           <span>Homestay</span>
@@ -24,17 +27,13 @@
       </v-app-bar>
 
       <!-- Sizes your content based upon application components -->
-      <v-main>
+      <v-main class="pink lighten-5">
         <!-- Provides the application the proper gutter -->
         <v-container fluid>
           <!-- If using vue-router -->
           <router-view></router-view>
         </v-container>
       </v-main>
-
-      <v-footer app>
-        <!-- -->
-      </v-footer>
     </v-app>
   </div>
 </template>

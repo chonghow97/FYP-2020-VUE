@@ -1,9 +1,8 @@
 <template>
   <div id="user">
     <!-- App.vue -->
-
     <v-app>
-      <v-navigation-drawer app v-model="drawer">
+      <v-navigation-drawer app v-model="drawer" color="cyan lighten-2">
         <!-- -->
         <Drawer :items="allMenus" :login="login" @login="login1"></Drawer>
         <template v-slot:append v-if="login">
@@ -14,27 +13,25 @@
         </template>
       </v-navigation-drawer>
 
-      <v-app-bar app class="teal lighten-4">
+      <v-app-bar app color="blue" dark absolute>
         <!-- -->
+
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <span class="font-weight-light">Ipoh</span>
           <span>Homestay</span>
         </v-toolbar-title>
       </v-app-bar>
-
       <!-- Sizes your content based upon application components -->
-      <v-main>
+      <v-main class="blue lighten-5">
         <!-- Provides the application the proper gutter -->
+
         <v-container fluid>
           <!-- If using vue-router -->
+
           <router-view></router-view>
         </v-container>
       </v-main>
-
-      <v-footer app>
-        <!-- -->
-      </v-footer>
     </v-app>
   </div>
 </template>
@@ -64,4 +61,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoope>
+</style>

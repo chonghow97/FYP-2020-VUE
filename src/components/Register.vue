@@ -45,10 +45,10 @@
             label="E-mail"
             required
           ></v-text-field>
-          <v-row>Mobile Number</v-row>
           <v-row>
             <v-col cols="12" md="3">
               <v-select
+                label="Code"
                 v-model="select"
                 :items="items"
                 :rules="[(v) => !!v || 'Item is required']"
@@ -57,6 +57,7 @@
             </v-col>
             <v-col cols="12" md="9">
               <v-text-field
+                label="mobile Number"
                 v-model="number"
                 :rules="numberRules"
                 :counter="10"
@@ -64,12 +65,6 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-checkbox
-            v-model="checkbox"
-            :rules="[(v) => !!v || 'You must agree to continue!']"
-            label="Do you agree?"
-            required
-          ></v-checkbox>
         </v-container>
       </v-form>
     </v-card-text>

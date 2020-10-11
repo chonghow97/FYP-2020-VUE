@@ -2,52 +2,82 @@
   <div id="add">
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
-        v-model="Homestay.name"
+        v-model="homestay.name"
         :counter="30"
         :rules="[(v) => !!v || 'Homestay is required']"
         label="Homestay Name"
         required
+        color="pink"
       ></v-text-field>
 
-      <v-select
-        v-model="Homestay.capacity"
-        :items="Capacity"
-        :rules="[(v) => !!v || 'Capacity is required']"
+      <v-slider
+        v-model="homestay.select"
         label="Capacity"
-        required
-      ></v-select>
-      <v-textarea
-        v-model="Homestay.description"
-        label="Description"
-        counter
-        full-width
-        single-line
-      ></v-textarea>
-      <v-btn color="success" class="mr-4" @click="getDummy()">Add</v-btn>
+        max="10"
+        min="1"
+        thumb-label
+        ticks
+        color="pink"
+      ></v-slider>
+      <v-row>
+        <v-col>
+          <v-textarea
+            filled
+            name="input-7-4"
+            label="Description"
+            color="pink"
+            class="pink lighten-5"
+          ></v-textarea>
+        </v-col>
+        <v-col>
+          <v-file-input
+            v-model="homestay.image"
+            small-chips
+            truncate-length="15"
+            prepend-icon="mdi-camera"
+            color="pink"
+          ></v-file-input>
+          <v-color-picker
+            hide-canvas
+            hide-mode-switch
+            type="rgb"
+            canvas-height="10"
+            elevation="1"
+            hide-inputs
+          ></v-color-picker>
+        </v-col>
+      </v-row>
     </v-form>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "AddHomestay",
   data() {
     return {
       dialog: true,
       Capacity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      select: "1",
-      name: "",
-      description: "",
       valid: "",
+      name: "Example Lim",
+      type: "hex",
+      description: "Testing 123",
     };
   },
-  methods: { ...mapActions(["getDummy"]) },
   computed: {
-    ...mapGetters(["Homestay"]),
+    ...mapGetters({ homestay: "newHomestay" }),
+    color: {
+      get() {
+        return this[this.type];
+      },
+      set(v) {
+        this[this.type] = v;
+      },
+    },
   },
 };
 </script>
 
 <style>
-</style>
+</style> 
