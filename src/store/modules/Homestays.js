@@ -15,6 +15,13 @@ const state = {
 
 };
 const actions = {
+   async setHomestays(){
+    const request = await axios.get("http://localhost:3000/homestays");
+    request.data !== null ? alert("fine"):
+    
+   },
+
+
   async setUser({ state, commit }) {
     state.success = false;
     const formData = new FormData();
@@ -26,15 +33,14 @@ const actions = {
       "http://localhost:3000/homestays",
       formData
     );
-    console.log(state.Homestay);
+    console.log(request);
     // state.Homestay = {color: "#FF00FF",capacity: 5,};
     state.success = true;
-    commit("toast", request.data);
+    commit("updateHomestay", request.data);
   },
 };
 const mutations = {
-  toast() {
-  },
+  updateHomestay: (state,homestay) => state.Homestays.unshift(homestay),
 };
 const getters = {
   newHomestay: (state) => state.Homestay,

@@ -26,10 +26,10 @@
       </v-row>
       <!-- description, capacity, name -->
       <v-container v-if="homestays">
-        <v-card class="mx-auto mt-3" v-for="n in testing" :key="n.id">
+        <v-card class="mx-auto mt-3" v-for="n in homestays" :key="n.id">
           <v-list-item class="yellow lighten-4">
             <v-list-item-content>
-              <v-list-item-title> {{ n.id }} {{ n.name }}</v-list-item-title>
+              <v-list-item-title> {{ n._id }} {{ n.name }}</v-list-item-title>
             </v-list-item-content>
             <v-btn small class="yellow lighten-5 ml-3">1</v-btn>
             <v-btn small class="yellow lighten-5 ml-3">1</v-btn>
@@ -51,21 +51,19 @@
 
 <script>
 import AddHomestay from "@/components/AddHomestay";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: { AddHomestay },
   data() {
     return {
       dialog: false,
-      testing: [
-        { id: 1, name: "item1" },
-        { id: 2, name: "item2" },
-        { id: 3, name: "item3" },
-      ],
     };
   },
   computed: { ...mapGetters({ homestays: "AllHomestay" }) },
-  methods: {},
+  methods: { ...mapActions(["setHomestays"]) },
+  mounted() {
+    this.setHomestays();
+  },
 };
 </script>
 
