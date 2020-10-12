@@ -1,6 +1,6 @@
 <template>
   <v-list dense nav>
-    <v-list-item-group v-model="model" mandatory color="indigo">
+    <v-list-item-group mandatory color="indigo">
       <v-list-item
         v-for="item in items"
         :key="item.title"

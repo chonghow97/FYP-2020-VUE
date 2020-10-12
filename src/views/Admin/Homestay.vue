@@ -21,23 +21,7 @@
 
       <v-row justify="center">
         <v-dialog v-model="dialog" max-width="500">
-          <v-card>
-            <v-list-item class="pink" dark>
-              <v-list-item-content>
-                <v-list-item-title class="headline">
-                  Register
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-text class="mt-3">
-              <AddHomestay></AddHomestay>
-            </v-card-text>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="pink" text @click="user()"> Add </v-btn>
-            </v-card-actions>
-          </v-card>
+          <AddHomestay></AddHomestay>
         </v-dialog>
       </v-row>
       <!-- description, capacity, name -->
@@ -67,7 +51,7 @@
 
 <script>
 import AddHomestay from "@/components/AddHomestay";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   components: { AddHomestay },
   data() {
@@ -80,16 +64,8 @@ export default {
       ],
     };
   },
-  computed: { ...mapGetters({ homestay: "newHomestay" }) },
-  methods: {
-    ...mapActions({ user: "setUser" }),
-    test: function () {
-      console.log("working");
-    },
-    dialog1: function (a) {
-      this.dialog = a;
-    },
-  },
+  computed: { ...mapGetters({ homestays: "AllHomestay" }) },
+  methods: {},
 };
 </script>
 

@@ -8,11 +8,14 @@ const state = {
     image: null,
     isActive: true,
     color: "#FF00FF",
+    price: 12,
   },
+
+  Homestays:null,
+
 };
 const actions = {
   async setUser({ state, commit }) {
-    this.$refs.namawee.validate()
     state.success = false;
     const formData = new FormData();
     for (var key in state.Homestay) {
@@ -23,7 +26,8 @@ const actions = {
       "http://localhost:3000/homestays",
       formData
     );
-    
+    console.log(state.Homestay);
+    // state.Homestay = {color: "#FF00FF",capacity: 5,};
     state.success = true;
     commit("toast", request.data);
   },
@@ -36,6 +40,7 @@ const getters = {
   newHomestay: (state) => state.Homestay,
   getShow: (state) => state.show,
   getSuccess: (state)=>state.success,
+  AllHomestay: (state)=>state.Homestays,
 };
 
 export default {
