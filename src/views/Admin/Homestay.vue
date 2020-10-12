@@ -41,21 +41,14 @@
         </v-dialog>
       </v-row>
       <!-- description, capacity, name -->
-      <v-container v-if="homestay">
-        <v-card
-          class="mx-auto mt-3"
-          width="500"
-          v-for="n in testing"
-          :key="n.id"
-        >
-          <v-list-item class="light-blue lighten-4">
-            <v-list-item-content class="lighten-3--text">
-              <v-list-item-title class="grey-darken-1--text">
-                {{ n.id }} {{ n.name }}</v-list-item-title
-              >
+      <v-container v-if="homestays">
+        <v-card class="mx-auto mt-3" v-for="n in testing" :key="n.id">
+          <v-list-item class="yellow lighten-4">
+            <v-list-item-content>
+              <v-list-item-title> {{ n.id }} {{ n.name }}</v-list-item-title>
             </v-list-item-content>
-            <v-btn small class="cyan lighten-5 ml-3">1</v-btn>
-            <v-btn small class="cyan lighten-5 ml-3">1</v-btn>
+            <v-btn small class="yellow lighten-5 ml-3">1</v-btn>
+            <v-btn small class="yellow lighten-5 ml-3">1</v-btn>
           </v-list-item>
 
           <v-divider></v-divider>
@@ -74,7 +67,7 @@
 
 <script>
 import AddHomestay from "@/components/AddHomestay";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: { AddHomestay },
   data() {
@@ -87,6 +80,7 @@ export default {
       ],
     };
   },
+  computed: { ...mapGetters({ homestay: "newHomestay" }) },
   methods: {
     ...mapActions({ user: "setUser" }),
     test: function () {
