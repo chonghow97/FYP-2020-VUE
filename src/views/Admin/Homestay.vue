@@ -42,10 +42,7 @@
                 </v-row>
               </v-list-item-title>
             </v-list-item-content>
-            <v-btn
-              small
-              class="yellow lighten-5 ml-3"
-              @click.stop="Dialog = true"
+            <v-btn small class="yellow lighten-5 ml-3" @click="UpdateHomestay()"
               >Edit</v-btn
             >
             <v-btn small class="yellow lighten-5 ml-3">Delete</v-btn>
@@ -83,7 +80,7 @@ export default {
   computed: {
     ...mapGetters({ homestays: "AllHomestay" }),
   },
-  methods: { ...mapActions(["setHomestays"]) },
+  methods: { ...mapActions(["setHomestays", "updateHomestay"]) },
   mounted() {
     this.setHomestays();
   },
