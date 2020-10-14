@@ -6,7 +6,7 @@
         fab
         dark
         class="mb-5 float-right"
-        @click.stop="dialog = true"
+        @click.stop="Dialog = true"
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -19,20 +19,36 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-row justify="center">
-        <v-dialog v-model="dialog" max-width="500">
-          <AddHomestay></AddHomestay>
-        </v-dialog>
-      </v-row>
       <!-- description, capacity, name -->
-      <v-container v-if="homestays">
+      <v-container v-if="homestays.length != 0">
         <v-card class="mx-auto mt-3" v-for="n in homestays" :key="n.id">
           <v-list-item class="yellow lighten-4">
             <v-list-item-content>
-              <v-list-item-title> {{ n._id }} {{ n.name }}</v-list-item-title>
+              <v-list-item-title>
+                <v-row dense>
+                  <v-col class="col-1">
+                    <v-icon small :color="n.color"
+                      >mdi-checkbox-blank-circle</v-icon
+                    >
+                  </v-col>
+
+                  <v-col class="col-1">
+                    <v-icon small :color="black">mdi-account</v-icon>
+                    {{ n.capacity }}
+                  </v-col>
+                  <v-col>
+                    {{ n.name }}
+                  </v-col>
+                </v-row>
+              </v-list-item-title>
             </v-list-item-content>
-            <v-btn small class="yellow lighten-5 ml-3">1</v-btn>
-            <v-btn small class="yellow lighten-5 ml-3">1</v-btn>
+            <v-btn
+              small
+              class="yellow lighten-5 ml-3"
+              @click.stop="Dialog = true"
+              >Edit</v-btn
+            >
+            <v-btn small class="yellow lighten-5 ml-3">Delete</v-btn>
           </v-list-item>
 
           <v-divider></v-divider>
@@ -44,6 +60,11 @@
         ></v-container
       >
     </v-container>
+
+    <!-- dialog -->
+    <v-dialog v-model="Dialog" max-width="500">
+      <AddHomestay></AddHomestay>
+    </v-dialog>
   </div>
 </template>
 
@@ -56,10 +77,12 @@ export default {
   components: { AddHomestay },
   data() {
     return {
-      dialog: false,
+      Dialog: false,
     };
   },
-  computed: { ...mapGetters({ homestays: "AllHomestay" }) },
+  computed: {
+    ...mapGetters({ homestays: "AllHomestay" }),
+  },
   methods: { ...mapActions(["setHomestays"]) },
   mounted() {
     this.setHomestays();

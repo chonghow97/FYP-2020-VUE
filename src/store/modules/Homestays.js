@@ -11,17 +11,18 @@ const state = {
     price: 12,
   },
 
-  Homestays:null,
-
+  Homestays:[],
 };
 const actions = {
-   async setHomestays(){
+   async setHomestays({state}){
     const request = await axios.get("http://localhost:3000/homestays");
-    request.data !== null ? alert("fine"):
-    
+    state.Homestays = request.data;
+    console.log(state.Homestays);
    },
 
-
+   setDialog({state},boolean){
+     state.AddHomestayDialog = boolean;
+   },
   async setUser({ state, commit }) {
     state.success = false;
     const formData = new FormData();
@@ -33,11 +34,14 @@ const actions = {
       "http://localhost:3000/homestays",
       formData
     );
-    console.log(request);
     // state.Homestay = {color: "#FF00FF",capacity: 5,};
     state.success = true;
     commit("updateHomestay", request.data);
   },
+
+  async updateHomestay(){
+    
+  }
 };
 const mutations = {
   updateHomestay: (state,homestay) => state.Homestays.unshift(homestay),
@@ -47,6 +51,7 @@ const getters = {
   getShow: (state) => state.show,
   getSuccess: (state)=>state.success,
   AllHomestay: (state)=>state.Homestays,
+  Dialog: (state)=> state.AddHomestayDialog,
 };
 
 export default {
