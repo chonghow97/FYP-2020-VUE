@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <v-card class="mx-auto" max-width="344"> </v-card>
-  </div>
+  <div id="app">123</div>
 </template>
 
 <script>

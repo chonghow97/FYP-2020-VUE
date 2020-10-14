@@ -18,7 +18,6 @@ const actions = {
   async setHomestays({ state }) {
     const request = await axios.get("http://localhost:3000/homestays");
     state.Homestays = request.data;
-    console.log(state.Homestays);
   },
 
   setDialog({ state }, boolean) {
@@ -40,14 +39,24 @@ const actions = {
     commit("updateHomestay", request.data);
   },
 
-  async updateHomestay() {
-    alert("hh");
+  async updateHomestay(getter,payload) {
+    const request = await axios.get("http://localhost:3000/homestays/"+payload);
+    state.Homestay = request.data;
   },
+
+  async deleteHomestay({commit},payload){
+    if(confirm("Are you sure you want to delete "+payload.name+" ?")){
+      await axios.delete(`http://localhost:3000/homestays/${payload._id}`);
+      commit("deleteHomestay",payload._id);
+    }
+  }
 };
 const mutations = {
   updateHomestay: (state, homestay) => state.Homestays.unshift(homestay),
+  deleteHomestay: (state, id) => (state.Homestays = state.Homestays.filter(homestay => homestay._id !== id)),
 };
 const getters = {
+  reservedHomestay: (state) => state.Homestays,
   newHomestay: (state) => state.Homestay,
   getShow: (state) => state.show,
   getSuccess: (state) => state.success,

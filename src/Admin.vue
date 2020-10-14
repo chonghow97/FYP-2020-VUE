@@ -5,7 +5,7 @@
     <v-app>
       <v-navigation-drawer app v-model="drawer" class="pink lighten-4" dark>
         <!-- -->
-        <Drawer :items="allAdminMenus"></Drawer>
+        <AdminDrawer :items="allAdminMenus"></AdminDrawer>
         <template v-slot:append>
           <div>
             <v-spacer></v-spacer>
@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import Drawer from "@/components/Drawer.vue";
+import AdminDrawer from "@/components/AdminDrawer.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "App",
 
-  components: { Drawer },
+  components: { AdminDrawer },
   data() {
     return {
       right: null,

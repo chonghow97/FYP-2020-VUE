@@ -73,6 +73,7 @@
                 clearable
                 truncate-length="15"
                 prepend-icon="mdi-camera"
+                :rules="[(v) => !!v || 'Photo is required']"
                 color="pink"
               ></v-file-input>
             </v-col>

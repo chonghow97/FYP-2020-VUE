@@ -38,7 +38,7 @@
 
 <script>
 import Drawer from "@/components/Drawer.vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 const data = {
   right: null,
   dialog: true,
@@ -50,6 +50,7 @@ export default {
   components: { Drawer },
   data: () => data,
   methods: {
+    ...mapActions(["setHomestays"]),
     login1: function (event) {
       this.login = event;
     },
@@ -57,7 +58,10 @@ export default {
       this.login = false;
     },
   },
-  computed: mapGetters(["allMenus"]),
+  computed: { ...mapGetters(["allMenus"]) },
+  mounted() {
+    this.setHomestays();
+  },
 };
 </script>
 

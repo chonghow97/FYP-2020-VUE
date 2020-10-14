@@ -42,10 +42,18 @@
                 </v-row>
               </v-list-item-title>
             </v-list-item-content>
-            <v-btn small class="yellow lighten-5 ml-3" @click="UpdateHomestay()"
+            <v-btn
+              small
+              class="yellow lighten-5 ml-3"
+              @click="updateHomestay(n._id)"
               >Edit</v-btn
             >
-            <v-btn small class="yellow lighten-5 ml-3">Delete</v-btn>
+            <v-btn
+              small
+              class="yellow lighten-5 ml-3"
+              @click="deleteHomestay(n)"
+              >Delete</v-btn
+            >
           </v-list-item>
 
           <v-divider></v-divider>
@@ -80,7 +88,9 @@ export default {
   computed: {
     ...mapGetters({ homestays: "AllHomestay" }),
   },
-  methods: { ...mapActions(["setHomestays", "updateHomestay"]) },
+  methods: {
+    ...mapActions(["setHomestays", "updateHomestay", "deleteHomestay"]),
+  },
   mounted() {
     this.setHomestays();
   },

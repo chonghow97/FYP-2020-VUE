@@ -67,7 +67,7 @@
         <!-- Homestay -->
         <v-select
           v-model="select"
-          :items="items"
+          :items="reservedHomestay._id"
           :rules="[(v) => !!v || 'Homestay is required']"
           label="Choose HomeStay"
           required
@@ -91,15 +91,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+const data = {
+  date: ["", ""],
+  menu: false,
+  valid: "",
+  Homestay: "",
+  select: "",
+  validate: "",
+};
 export default {
-  data() {
-    return {
-      date: ["", ""],
-      menu: false,
-    };
-  },
-  mounted: {},
   computed: {
+    ...mapGetters(["reservedHomestay"]),
     minMax: function () {
       if (
         this.date.length === 2 &&
@@ -121,8 +124,13 @@ export default {
       }
     },
   },
-  props: ["label"],
+  data: function () {
+    return data;
+  },
   methods: {},
+  mounted() {
+    console.log(this.reservedHomestay);
+  },
 };
 </script>
 
