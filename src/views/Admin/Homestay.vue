@@ -33,7 +33,7 @@
                   </v-col>
 
                   <v-col class="col-1">
-                    <v-icon small :color="black">mdi-account</v-icon>
+                    <v-icon small>mdi-account</v-icon>
                     {{ n.capacity }}
                   </v-col>
                   <v-col>
@@ -46,13 +46,13 @@
               small
               class="yellow lighten-5 ml-3"
               @click="updateHomestay(n._id)"
-              >Edit</v-btn
+              ><v-icon color="pink"> mdi-pencil </v-icon></v-btn
             >
             <v-btn
               small
               class="yellow lighten-5 ml-3"
               @click="deleteHomestay(n)"
-              >Delete</v-btn
+              ><v-icon color="pink"> mdi-trash-can-outline </v-icon></v-btn
             >
           </v-list-item>
 

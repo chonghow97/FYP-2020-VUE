@@ -7,8 +7,8 @@
       </v-list-item-avatar>
 
       <v-list-item-content>
-        <v-list-item-title>Alex Becker</v-list-item-title>
-        <v-list-item-subtitle>Customer</v-list-item-subtitle>
+        <v-list-item-title>name</v-list-item-title>
+        <v-list-item-subtitle>Admin</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 

@@ -5,7 +5,12 @@
         <v-container>
           <v-row>
             <v-col>
-              <v-text-field v-model="Email" label="Email" required :rules="emailRules"></v-text-field>
+              <v-text-field
+                v-model="Email"
+                label="Email"
+                required
+                :rules="emailRules"
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -30,18 +35,22 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" text @click="Login">Sign In</v-btn>
+      <v-btn color="primary" :disabled="!valid" text @click="Login(UserAccount)"
+        >Sign In</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      Email: "",
-      password: "",
+      valid: false,
+      show1: false,
+      Email: "a@a.com",
+      password: "o0o0o0o0o0o0o0",
       emailRules: [
         (v) => !!v || "Email is required",
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -53,10 +62,7 @@ export default {
     };
   },
   methods: {
-    Login: function () {
-      axios.post("localhost:3000/users", this.UserAccount);
-      console.log(this.UserAccount);
-    },
+    ...mapActions({ Login: "userLogin" }),
   },
   computed: {
     UserAccount: function () {

@@ -1,3 +1,4 @@
+import axios from "axios";
 const state = {
   adminMenus: [
     {
@@ -9,9 +10,14 @@ const state = {
     { title: "Calendar", icon: "mdi-calendar", link: "/Calendar" },
   ],
 };
-const actions = {};
+const actions = {
+  async adminLogin(getters,payload){
+    const request = await axios.post("http://localhost:3000/admin",{password: payload});
+    console.log(request.data);
+  }
+};
 const mutations = {};
-const getters = { allAdminMenus: (state) => state.adminMenus };
+const getters = { allAdminMenus: (state) => state.adminMenus};
 
 export default {
   state,

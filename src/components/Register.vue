@@ -75,14 +75,16 @@
       <v-btn color="warning" text class="mr-4" @click="reset">Clear</v-btn>
 
       <v-spacer></v-spacer>
-      <v-btn color="primary" text @click="validate">Submit</v-btn>
+      <v-btn color="primary" text @click="UserRegiser(newUser)">Submit</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 const data = {
+  show1: false,
+  password: "123456",
   firstname: "Loh",
   lastname: "Kean Ming",
   number: "184213618",
@@ -103,31 +105,31 @@ const data = {
     (v) => !!v || "E-mail is required",
     (v) => (v && v.length >= 9) || "Name must be more than 9 characters",
   ],
+  passRules: [
+    (v) => !!v || "Password is required",
+    (v) => (v && v.length >= 8) || "password must be more than 8 characters",
+  ],
   checkbox: true,
 };
 export default {
-  data,
+  data() {
+    return data;
+  },
   computed: {
     newUser: function () {
       const user = {
         fName: this.firstname,
         lName: this.lastname,
         email: this.email,
-        code: this.select,
-        phone: this.number,
+        phone: this.select + this.number,
+        password: this.password,
       };
       return user;
     },
   },
 
   methods: {
-    validate() {
-      this.$refs.form.validate();
-      if (this.$refs.form.validate()) {
-        console.log(this.newUser);
-        axios.post("http://localhost:3000/users/", this.newUser);
-      }
-    },
+    ...mapActions(["UserRegiser"]),
     reset() {
       this.$refs.form.reset();
     },

@@ -97,16 +97,17 @@ export default {
   name: "AddHomestay",
   data() {
     return {
-      dialog: true,
       valid: "",
     };
   },
   methods: {
     ...mapActions({ user: "setUser" }),
+    ...mapActions(["updateHomestay"]),
   },
   computed: {
     ...mapGetters({ homestay: "newHomestay" }),
     ...mapGetters({ alert: "getSuccess" }),
+    ...mapGetters({ dialog: "Dialog" }),
     color: {
       get() {
         return this[this.type];

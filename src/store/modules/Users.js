@@ -1,3 +1,5 @@
+import Axios from "axios";
+
 const state = {
   menus: [
     { title: "Home", icon: "mdi-home", link: "/" },
@@ -6,7 +8,23 @@ const state = {
   ],
 };
 const getters = { allMenus: (state) => state.menus };
-const actions = {};
+const actions = {
+  async userLogin(getters,payload){
+    const request = await Axios.post("http://localhost:3000/users/login",payload);
+    console.log(request.data);
+  },
+
+  async UserRegiser(getters,payload){
+    try {
+      const request = await Axios.post("http://localhost:3000/users/register",payload);
+    console.log(request);
+    } catch (error) {
+      alert(error.message);
+    }
+    }
+    
+   
+  };
 const mutations = {};
 
 export default {

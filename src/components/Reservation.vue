@@ -67,18 +67,20 @@
         <!-- Homestay -->
         <v-select
           v-model="select"
-          :items="reservedHomestay._id"
+          :items="reservedHomestay"
           :rules="[(v) => !!v || 'Homestay is required']"
           label="Choose HomeStay"
           required
         ></v-select>
         <!-- Price -->
         <v-text-field
-          :value="'RM ' + getDay"
+          :value="'RM ' + getDay * homestayPrice"
           label="Price"
           class="cyan lighten-5 black--text"
           filled
+          persistent-hint
           disabled
+          :hint="'Your reserved ' + getDay + ' days.'"
         ></v-text-field>
         <!-- check available -->
         <v-btn color="blue lighten-4" class="mr-4"> Check available </v-btn>
@@ -112,11 +114,32 @@ export default {
       }
       return this.date;
     },
+    homestayPrice() {
+      if (
+        this.date.length === 2 &&
+        Date.parse(this.date[1]) > Date.parse(this.date[0]) &&
+        this.select
+      ) {
+        const result = this.reservedHomestay.filter(
+          (homestay) => this.select == homestay.value
+        );
+        console.log(result[0]);
+        return result[0].price;
+      } else return "";
+    },
     getDay: function () {
       if (
         this.date.length === 2 &&
-        Date.parse(this.date[1]) > Date.parse(this.date[0])
+        Date.parse(this.date[1]) > Date.parse(this.date[0]) &&
+        this.select
       ) {
+        const day = Date.parse(this.date[1]) - Date.parse(this.date[0]);
+        return day / 86400000;
+      } else if (
+        this.date.length === 2 &&
+        Date.parse(this.date[0]) > Date.parse(this.date[1])
+      ) {
+        [this.date[0], this.date[1]] = [this.date[1], this.date[0]];
         const day = Date.parse(this.date[1]) - Date.parse(this.date[0]);
         return day / 86400000;
       } else {
