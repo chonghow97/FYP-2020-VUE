@@ -9,7 +9,7 @@ const state = {
     image: null,
     isActive: true,
     color: "#FF00FF",
-    price: 12,
+    price: 30,
   },
 
   Homestays: [],
@@ -25,9 +25,6 @@ const actions = {
     });
   },
 
-  setDialog({ state }, boolean) {
-    state.AddHomestayDialog = boolean;
-  },
   async setUser({ state, commit }) {
     state.success = false;
     const formData = new FormData();
@@ -44,11 +41,15 @@ const actions = {
     commit("updateHomestay", request.data);
   },
 
-  async updateHomestay({state},payload) {
+  async showHomestay({state},payload) {
     state.success = false;
     const request = await axios.get("http://localhost:3000/homestays/"+payload);
     state.Homestay = request.data;
-    console.log(getters);
+  },
+
+  updateHomestay({state},payload){
+    alert(payload);
+    console.log(state);
   },
 
   async deleteHomestay({commit},payload){

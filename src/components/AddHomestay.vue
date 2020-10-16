@@ -3,7 +3,7 @@
     <v-card>
       <v-list-item class="pink" dark>
         <v-list-item-content>
-          <v-list-item-title class="headline"> Register </v-list-item-title>
+          <v-list-item-title class="headline"> {{ title }} </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-card-text class="mt-3">
@@ -83,8 +83,8 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn :disabled="!valid" color="pink" text @click="user()">
-          Add
+        <v-btn :disabled="!valid" color="pink" text @click="SubmitButtonAction">
+          {{ SubmitButtonName }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -95,6 +95,13 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "AddHomestay",
+  props: {
+    title: String,
+    SubmitButtonName: String,
+    SubmitButtonAction: {
+      type: Function,
+    },
+  },
   data() {
     return {
       valid: "",
@@ -103,6 +110,9 @@ export default {
   methods: {
     ...mapActions({ user: "setUser" }),
     ...mapActions(["updateHomestay"]),
+    rubbish() {
+      alert("sss");
+    },
   },
   computed: {
     ...mapGetters({ homestay: "newHomestay" }),

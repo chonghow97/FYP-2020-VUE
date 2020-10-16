@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-text>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="registerForm" v-model="valid" lazy-validation>
         <v-container>
           <v-row>
             <v-col cols="12" md="6">
@@ -75,7 +75,12 @@
       <v-btn color="warning" text class="mr-4" @click="reset">Clear</v-btn>
 
       <v-spacer></v-spacer>
-      <v-btn color="primary" text @click="UserRegiser(newUser)">Submit</v-btn>
+      <v-btn
+        color="blue white--text"
+        :disabled="!valid"
+        @click="UserRegiser(newUser)"
+        >Sign Up</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
@@ -88,8 +93,8 @@ const data = {
   firstname: "Loh",
   lastname: "Kean Ming",
   number: "184213618",
-  valid: true,
   name: "",
+  valid: "",
   nameRules: [
     (v) => !!v || "Name is required",
     (v) => (v && v.length <= 30) || "Name must be less than 10 characters",
@@ -131,7 +136,8 @@ export default {
   methods: {
     ...mapActions(["UserRegiser"]),
     reset() {
-      this.$refs.form.reset();
+      console.log(this.$refs.registerForm);
+      this.$refs.registerForm.validate();
     },
   },
 };

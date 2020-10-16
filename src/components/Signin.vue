@@ -49,8 +49,8 @@ export default {
     return {
       valid: false,
       show1: false,
-      Email: "a@a.com",
-      password: "o0o0o0o0o0o0o0",
+      Email: "keanming@gmail.com",
+      password: "12345678",
       emailRules: [
         (v) => !!v || "Email is required",
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",

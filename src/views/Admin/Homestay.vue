@@ -1,13 +1,7 @@
 <template>
   <div id="homestay">
     <v-container>
-      <v-btn
-        color="pink"
-        fab
-        dark
-        class="mb-5 float-right"
-        @click.stop="Dialog = true"
-      >
+      <v-btn color="pink" fab dark class="mb-5 float-right" @click.stop="add">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
       <v-list-item two-line>
@@ -42,10 +36,7 @@
                 </v-row>
               </v-list-item-title>
             </v-list-item-content>
-            <v-btn
-              small
-              class="yellow lighten-5 ml-3"
-              @click="updateHomestay(n._id)"
+            <v-btn small class="yellow lighten-5 ml-3" @click="update(n._id)"
               ><v-icon color="pink"> mdi-pencil </v-icon></v-btn
             >
             <v-btn
@@ -68,7 +59,11 @@
 
     <!-- dialog -->
     <v-dialog v-model="Dialog" max-width="500">
-      <AddHomestay></AddHomestay>
+      <AddHomestay
+        :title="HomestayForm.title"
+        :SubmitButtonName="HomestayForm.name"
+        :SubmitButtonAction="HomestayForm.action"
+      ></AddHomestay>
     </v-dialog>
   </div>
 </template>
@@ -78,21 +73,48 @@
 <script>
 import AddHomestay from "@/components/AddHomestay";
 import { mapActions, mapGetters } from "vuex";
+import store from "../../store/";
 export default {
   components: { AddHomestay },
   data() {
     return {
+      HomestayForm: { title: "", name: "", action: this.add },
       Dialog: false,
+      id: "",
     };
   },
   computed: {
     ...mapGetters({ homestays: "AllHomestay" }),
   },
   methods: {
-    ...mapActions(["setHomestays", "updateHomestay", "deleteHomestay"]),
+    ...mapActions(["deleteHomestay"]),
+    add() {
+      this.HomestayForm = {
+        title: "Create Homestay",
+        name: "Create",
+        action: this.setHomestays,
+      };
+      this.Dialog = true;
+    },
+    update(payload) {
+      store.dispatch("showHomestay", payload);
+      this.HomestayForm = {
+        title: "Update Homestay",
+        name: "Update",
+        action: this.updateHomestay,
+      };
+      this.id = payload;
+      this.Dialog = true;
+    },
+    setHomestays() {
+      store.dispatch("setUser");
+    },
+    updateHomestay() {
+      store.dispatch("updateHomestay", this.id);
+    },
   },
   mounted() {
-    this.setHomestays();
+    store.dispatch("setHomestays");
   },
 };
 </script>
