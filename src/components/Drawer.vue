@@ -1,7 +1,7 @@
 <template>
   <section id="menu">
     <!-- not login -->
-    <v-list-item two-line @click.stop="dialog = true" v-if="!login">
+    <v-list-item two-line @click.stop="dialog = true" v-if="!isLogin">
       <v-list-item-avatar>
         <v-icon>{{ Default_Profile }}</v-icon>
       </v-list-item-avatar>
@@ -12,14 +12,13 @@
     </v-list-item>
 
     <!-- is-login -->
-    <v-list-item two-line @click.stop="dialog = true" v-else>
+    <v-list-item two-line v-else>
       <v-list-item-avatar>
         <img src="https://randomuser.me/api/portraits/men/82.jpg" />
       </v-list-item-avatar>
 
       <v-list-item-content>
-        <v-list-item-title>Alex Becker</v-list-item-title>
-        <v-list-item-subtitle>Customer</v-list-item-subtitle>
+        <v-list-item-title class="white--text">Alex Becker</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
@@ -33,10 +32,10 @@
         <v-tab>Sign In</v-tab>
         <v-tab>Register</v-tab>
         <v-tab-item>
-          <Signin @login="Login"></Signin>
+          <Signin :userLogin="Login"></Signin>
         </v-tab-item>
         <v-tab-item>
-          <Register></Register>
+          <Register :RegisterAction="Login"></Register>
         </v-tab-item>
       </v-tabs>
     </v-dialog>
@@ -49,6 +48,7 @@
 import Register from "@/components/Register.vue";
 import Signin from "@/components/Signin.vue";
 import MenuList from "@/components/MenuList.vue";
+import store from "../store";
 const data = {
   dialog: false,
   Default_Profile: "mdi-account-circle",
@@ -56,14 +56,14 @@ const data = {
 export default {
   components: { Register, Signin, MenuList },
   data: () => data,
+  computed: { isLogin: () => store.state.Users.isLogin },
   props: {
     items: { title: String, icon: String, link: String },
-    login: Boolean,
   },
   methods: {
-    Login: function (a) {
-      this.login = a;
-      this.$emit("login", a);
+    Login: function () {
+      store.dispatch("userLogin");
+      this.dialog = false;
     },
   },
 };

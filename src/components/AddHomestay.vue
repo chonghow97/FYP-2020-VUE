@@ -18,7 +18,7 @@
             Added Successfully!
           </v-alert>
           <v-text-field
-            v-model="homestay.name"
+            v-model="Homestay.name"
             :counter="30"
             :rules="[(v) => !!v || 'Homestay is required']"
             label="Homestay Name"
@@ -27,7 +27,7 @@
             class="mt-5"
           ></v-text-field>
           <v-text-field
-            v-model="homestay.price"
+            v-model="Homestay.price"
             label="Price"
             hide-details
             :rules="[(v) => !!v || 'Price is required']"
@@ -36,7 +36,7 @@
           ></v-text-field>
           <v-textarea
             filled
-            v-model="homestay.description"
+            v-model="Homestay.description"
             name="input-7-4"
             label="Description"
             :rules="[(v) => !!v || 'Description is required']"
@@ -44,7 +44,7 @@
             class="pink lighten-5 mt-5 mb-5"
           ></v-textarea>
           <v-slider
-            v-model="homestay.capacity"
+            v-model="Homestay.capacity"
             label="Capacity"
             max="10"
             min="1"
@@ -57,7 +57,7 @@
           <v-row>
             <v-col class="md-col-12 lg-col-6">
               <v-color-picker
-                v-model="homestay.color"
+                v-model="Homestay.color"
                 hide-canvas
                 hide-mode-switch
                 type="rgb"
@@ -68,7 +68,7 @@
             </v-col>
             <v-col class="md-col-12 lg-col-6">
               <v-file-input
-                v-model="homestay.image"
+                v-model="Homestay.image"
                 small-chips
                 clearable
                 truncate-length="15"
@@ -101,6 +101,14 @@ export default {
     SubmitButtonAction: {
       type: Function,
     },
+    Homestay: {
+      name: String,
+      price: String,
+      capacity: Number,
+      description: String,
+      color: String,
+      image: String,
+    },
   },
   data() {
     return {
@@ -115,7 +123,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({ homestay: "newHomestay" }),
     ...mapGetters({ alert: "getSuccess" }),
     ...mapGetters({ dialog: "Dialog" }),
     color: {

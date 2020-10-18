@@ -35,7 +35,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" :disabled="!valid" text @click="Login(UserAccount)"
+      <v-btn color="primary" :disabled="!valid" text @click="userLogin"
         >Sign In</v-btn
       >
     </v-card-actions>
@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -61,9 +60,7 @@ export default {
       ],
     };
   },
-  methods: {
-    ...mapActions({ Login: "userLogin" }),
-  },
+  props: ["userLogin"],
   computed: {
     UserAccount: function () {
       const User = {

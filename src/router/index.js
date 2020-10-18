@@ -5,12 +5,12 @@ import Admin from "../Admin.vue";
 import Home from "@/views/User/Home.vue";
 import About from "@/views/User/About.vue";
 import Gallery from "@/views/User/Gallery.vue";
-import Chat from "@/views/User/Chat.vue";
 import Calendar from "@/views/Admin/Calendar.vue";
 import Dashboard from "@/views/Admin/Dashboard.vue";
 import Homestay from "@/views/Admin/Homestay.vue";
 import galleryDetail from "@/views/User/galleryDetail.vue";
 import Login from "@/views/Admin/login.vue";
+import History from "@/views/User/history.vue"
 
 Vue.use(VueRouter);
 
@@ -44,9 +44,9 @@ const routes = [
         component: galleryDetail,
       },
       {
-        path: "/chat",
-        name: "chat",
-        component: Chat,
+        path: "/history",
+        name: "history",
+        component: History,
       },
     ],
   },

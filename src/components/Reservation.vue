@@ -151,9 +151,6 @@ export default {
     return data;
   },
   methods: {},
-  mounted() {
-    console.log(this.reservedHomestay);
-  },
 };
 </script>
 

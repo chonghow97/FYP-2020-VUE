@@ -4,11 +4,20 @@
     <v-app>
       <v-navigation-drawer app v-model="drawer" color="cyan lighten-2">
         <!-- -->
-        <Drawer :items="allMenus" :login="login" @login="login1"></Drawer>
-        <template v-slot:append v-if="login">
-          <div>
-            <v-spacer></v-spacer>
-            <v-btn block @click="logout">Logout</v-btn>
+        <Drawer :items="allMenus"></Drawer>
+        <template v-slot:append>
+          <div class="blue lighten-5" v-if="isLogin">
+            <v-row dense no-gutters>
+              <v-col cols="3"
+                ><v-btn depressed exact tile dense bottom icon color="black">
+                  <v-icon> mdi-cog-outline </v-icon>
+                </v-btn></v-col
+              >
+              <v-spacer></v-spacer>
+              <v-col cols="8"
+                ><v-btn block @click="Logout"> Logout </v-btn></v-col
+              >
+            </v-row>
           </div>
         </template>
       </v-navigation-drawer>
@@ -39,6 +48,7 @@
 <script>
 import Drawer from "@/components/Drawer.vue";
 import { mapActions, mapGetters } from "vuex";
+import store from "./store";
 const data = {
   right: null,
   dialog: true,
@@ -54,11 +64,19 @@ export default {
     login1: function (event) {
       this.login = event;
     },
-    logout: function () {
-      this.login = false;
+    Logout: function () {
+      store.state.Users.menuLogin.forEach((element) => {
+        store.state.Users.menus.pop(element);
+      });
+      store.state.Users.isLogin = false;
+      window.location.href = "/";
     },
   },
-  computed: { ...mapGetters(["allMenus"]) },
+
+  computed: {
+    ...mapGetters(["allMenus"]),
+    isLogin: () => store.state.Users.isLogin,
+  },
   mounted() {
     this.setHomestays();
   },

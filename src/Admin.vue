@@ -41,6 +41,7 @@
 <script>
 import AdminDrawer from "@/components/AdminDrawer.vue";
 import { mapGetters } from "vuex";
+import store from "./store";
 export default {
   name: "App",
 
@@ -51,6 +52,9 @@ export default {
       dialog: false,
       drawer: true,
     };
+  },
+  beforeCreate: () => {
+    if (!store.state.Admin.isLogin) window.location.href = "/";
   },
   computed: { ...mapGetters(["allAdminMenus"]) },
 };

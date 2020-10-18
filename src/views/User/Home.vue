@@ -7,7 +7,7 @@
       src="https://picsum.photos/id/11/500/300"
       transition="fade-transition"
     ></v-img>
-    <v-container>
+    <v-container v-if="isLogin">
       <v-row>
         <v-col cols="12" md="12">
           <!-- Reservation form -->
@@ -20,6 +20,7 @@
 
 <script>
 import Reservation from "@/components/Reservation.vue";
+import store from "../../store";
 export default {
   name: "home",
   components: { Reservation },
@@ -36,6 +37,7 @@ export default {
       message: "",
     };
   },
+  computed: { isLogin: () => store.state.Users.isLogin },
 };
 </script>
 

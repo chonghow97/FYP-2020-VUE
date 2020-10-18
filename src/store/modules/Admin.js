@@ -9,6 +9,10 @@ const state = {
     { title: "HomeStay", icon: "mdi-home-account", link: "/Homestay" },
     { title: "Calendar", icon: "mdi-calendar", link: "/Calendar" },
   ],
+  admin: {
+    name: "",
+  },
+  isLogin: false,
 };
 const actions = {
   async adminLogin(getters,payload){

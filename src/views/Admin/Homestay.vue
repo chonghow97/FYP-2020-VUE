@@ -63,6 +63,7 @@
         :title="HomestayForm.title"
         :SubmitButtonName="HomestayForm.name"
         :SubmitButtonAction="HomestayForm.action"
+        :Homestay="homestay"
       ></AddHomestay>
     </v-dialog>
   </div>
@@ -81,6 +82,14 @@ export default {
       HomestayForm: { title: "", name: "", action: this.add },
       Dialog: false,
       id: "",
+      homestay: {
+        name: "good",
+        price: "12",
+        capacity: "34",
+        description: "5000",
+        color: "#FF00FF",
+        image: null,
+      },
     };
   },
   computed: {
@@ -97,20 +106,25 @@ export default {
       this.Dialog = true;
     },
     update(payload) {
-      store.dispatch("showHomestay", payload);
       this.HomestayForm = {
         title: "Update Homestay",
         name: "Update",
         action: this.updateHomestay,
       };
-      this.id = payload;
+      const user = this.homestays.filter((home) => home._id === payload)[0];
+      this.homestay = user;
+      this.id = user._id;
       this.Dialog = true;
     },
     setHomestays() {
-      store.dispatch("setUser");
+      store.dispatch("setUser", this.homestay);
     },
     updateHomestay() {
-      store.dispatch("updateHomestay", this.id);
+      console.log(this.id);
+      store.dispatch("updateHomestay", {
+        homestay: this.homestay,
+        id: this.homestay._id,
+      });
     },
   },
   mounted() {

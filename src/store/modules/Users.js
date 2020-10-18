@@ -6,13 +6,23 @@ const state = {
     { title: "About", icon: "mdi-help-box", link: "/About" },
     { title: "Gallery", icon: "mdi-image", link: "/Gallery" },
   ],
+  menuLogin: [{
+        title: "Reserved History",
+        icon: "mdi-history",
+        link: "/History",
+      }],
   registerForm: {},
+  isLogin: false,
 };
 const getters = { allMenus: (state) => state.menus, registerForm:(state)=> state.registerForm };
 const actions = {
-  async userLogin(getters,payload){
-    const request = await Axios.post("http://localhost:3000/users/login",payload);
-    console.log(request.data);
+  async userLogin({state}){
+    state.menuLogin.forEach(element => {
+      state.menus.push(element)
+    });
+    state.isLogin = true;
+    // const request = await Axios.post("http://localhost:3000/users/login",payload);
+    // console.log(request.data);
   },
 
   async UserRegiser(getters,payload){
