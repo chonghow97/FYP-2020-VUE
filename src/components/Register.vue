@@ -86,10 +86,10 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import store from "../store";
 const data = {
   show1: false,
-  password: "123456",
+  password: "12345678",
   firstname: "Loh",
   lastname: "Kean Ming",
   number: "184213618",
@@ -134,10 +134,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(["UserRegiser"]),
+    UserRegiser(newUser) {
+      if (this.$refs.registerForm.validate()) {
+        store.dispatch("UserRegiser", newUser);
+      }
+    },
     reset() {
-      console.log(this.$refs.registerForm);
-      this.$refs.registerForm.validate();
+      console.log(this.$refs.registerForm.reset());
     },
   },
 };

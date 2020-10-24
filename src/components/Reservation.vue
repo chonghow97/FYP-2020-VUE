@@ -8,7 +8,7 @@
   >
     <v-card-title>Reservation</v-card-title>
     <v-card-text>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="reservedForm" v-model="valid" lazy-validation>
         <v-row>
           <v-col cols="12" md="12">
             <!-- form -->
@@ -29,6 +29,7 @@
                       v-model="minMax[0]"
                       label="Start Date"
                       prepend-icon="mdi-calendar"
+                      :rules="[(v) => !!v || 'Start Date is cannot be Empty']"
                       readonly
                       v-bind="attrs"
                       v-on="on"
@@ -41,6 +42,7 @@
                       v-model="minMax[1]"
                       label="EndDate"
                       prepend-icon="mdi-calendar"
+                      :rules="[(v) => !!v || 'End Date is cannot be Empty']"
                       readonly
                       v-bind="attrs"
                     ></v-text-field>
@@ -83,10 +85,10 @@
           :hint="'Your reserved ' + getDay + ' days.'"
         ></v-text-field>
         <!-- check available -->
-        <v-btn color="blue lighten-4" class="mr-4"> Check available </v-btn>
-        <v-btn color="blue lighten-4" class="mr-4" @click="validate"
-          >Order</v-btn
-        >
+        <v-btn color="blue lighten-4" class="mr-4" @click="test">
+          Check available
+        </v-btn>
+        <v-btn color="blue lighten-4" class="mr-4" @click="order">Order</v-btn>
       </v-form>
     </v-card-text>
   </v-card>
@@ -94,6 +96,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import store from "../store";
 const data = {
   date: ["", ""],
   menu: false,
@@ -150,7 +153,25 @@ export default {
   data: function () {
     return data;
   },
-  methods: {},
+  methods: {
+    test: function () {
+      //add validation from form
+      if (this.$refs.reservedForm.validate()) {
+        const data = {
+          userID: store.state.Users.user._id,
+          startDate: this.date[0],
+          endDate: this.date[1],
+          homestay: this.select,
+          amount: this.getDay * this.homestayPrice,
+        };
+        //dispatch to vuex
+        store.dispatch("valiationReservation", data);
+      }
+    },
+    order: function () {
+      return null;
+    },
+  },
 };
 </script>
 

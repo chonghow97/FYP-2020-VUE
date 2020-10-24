@@ -48,6 +48,7 @@
 <script>
 import Drawer from "@/components/Drawer.vue";
 import { mapActions, mapGetters } from "vuex";
+import VueCookies from "vue-cookies";
 import store from "./store";
 const data = {
   right: null,
@@ -68,6 +69,8 @@ export default {
       store.state.Users.menuLogin.forEach((element) => {
         store.state.Users.menus.pop(element);
       });
+      //destroy cookies
+      VueCookies.remove("Userdata");
       store.state.Users.isLogin = false;
       window.location.href = "/";
     },
@@ -79,6 +82,11 @@ export default {
   },
   mounted() {
     this.setHomestays();
+    if (VueCookies.get("Userdata")) {
+      const Userdata = VueCookies.get("Userdata");
+      store.state.Users.user = Userdata;
+      store.state.Users.isLogin = true;
+    }
   },
 };
 </script>

@@ -18,7 +18,7 @@
       </v-list-item-avatar>
 
       <v-list-item-content>
-        <v-list-item-title class="white--text">Alex Becker</v-list-item-title>
+        <v-list-item-title class="white--text">{{ name }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
@@ -32,7 +32,7 @@
         <v-tab>Sign In</v-tab>
         <v-tab>Register</v-tab>
         <v-tab-item>
-          <Signin :userLogin="Login"></Signin>
+          <Signin :userLogin="Login" @update="dialog"></Signin>
         </v-tab-item>
         <v-tab-item>
           <Register :RegisterAction="Login"></Register>
@@ -56,14 +56,19 @@ const data = {
 export default {
   components: { Register, Signin, MenuList },
   data: () => data,
-  computed: { isLogin: () => store.state.Users.isLogin },
+  computed: {
+    isLogin: () => store.state.Users.isLogin,
+    name: () =>
+      `${store.state.Users.user.lName} ${store.state.Users.user.fName}`,
+  },
   props: {
     items: { title: String, icon: String, link: String },
   },
   methods: {
-    Login: function () {
-      store.dispatch("userLogin");
-      this.dialog = false;
+    Login: async function (payload) {
+      if (await store.dispatch("userLogin", payload)) {
+        this.dialog = false;
+      }
     },
   },
 };

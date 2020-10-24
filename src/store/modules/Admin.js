@@ -12,7 +12,7 @@ const state = {
   admin: {
     name: "",
   },
-  isLogin: false,
+  isLogin: true,
 };
 const actions = {
   async adminLogin(getters,payload){

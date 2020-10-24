@@ -1,12 +1,12 @@
 <template>
   <v-card>
     <v-card-text>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="signIn" v-model="valid" lazy-validation>
         <v-container>
           <v-row>
             <v-col>
               <v-text-field
-                v-model="Email"
+                v-model="email"
                 label="Email"
                 required
                 :rules="emailRules"
@@ -35,7 +35,11 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" :disabled="!valid" text @click="userLogin"
+      <v-btn
+        color="primary"
+        :disabled="!valid"
+        text
+        @click="userLogin(UserAccount)"
         >Sign In</v-btn
       >
     </v-card-actions>
@@ -48,7 +52,7 @@ export default {
     return {
       valid: false,
       show1: false,
-      Email: "keanming@gmail.com",
+      email: "keanming@gmail.com",
       password: "12345678",
       emailRules: [
         (v) => !!v || "Email is required",
@@ -62,12 +66,8 @@ export default {
   },
   props: ["userLogin"],
   computed: {
-    UserAccount: function () {
-      const User = {
-        Email: this.Email,
-        Password: this.password,
-      };
-      return User;
+    UserAccount() {
+      return { email: this.email, password: this.password };
     },
   },
 };
