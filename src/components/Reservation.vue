@@ -84,11 +84,7 @@
           disabled
           :hint="'Your reserved ' + getDay + ' days.'"
         ></v-text-field>
-        <!-- check available -->
-        <v-btn color="blue lighten-4" class="mr-4" @click="test">
-          Check available
-        </v-btn>
-        <v-btn color="blue lighten-4" class="mr-4" @click="order">Order</v-btn>
+        <v-btn color="blue lighten-4" class="mr-4" @click="test">Order</v-btn>
       </v-form>
     </v-card-text>
   </v-card>
@@ -126,7 +122,6 @@ export default {
         const result = this.reservedHomestay.filter(
           (homestay) => this.select == homestay.value
         );
-        console.log(result[0]);
         return result[0].price;
       } else return "";
     },
@@ -171,6 +166,9 @@ export default {
     order: function () {
       return null;
     },
+  },
+  mounted() {
+    console.log(this.reservedHomestay, "asd");
   },
 };
 </script>

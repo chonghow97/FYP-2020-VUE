@@ -89,6 +89,7 @@ export default {
         description: "5000",
         color: "#FF00FF",
         image: null,
+        isActive: true,
       },
     };
   },
@@ -123,8 +124,8 @@ export default {
       console.log(this.id);
       store.dispatch("updateHomestay", {
         homestay: this.homestay,
-        id: this.homestay._id,
       });
+      this.Dialog = false;
     },
   },
   mounted() {

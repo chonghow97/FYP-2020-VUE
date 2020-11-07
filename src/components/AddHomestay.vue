@@ -3,7 +3,12 @@
     <v-card>
       <v-list-item class="pink" dark>
         <v-list-item-content>
-          <v-list-item-title class="headline"> {{ title }} </v-list-item-title>
+          <v-list-item-title class="headline">
+            <div class="d-flex flex-row justify-space-between">
+              {{ title }}
+              <v-switch dense v-model="Homestay.isActive"> </v-switch>
+            </div>
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-card-text class="mt-3">
@@ -108,6 +113,7 @@ export default {
       description: String,
       color: String,
       image: String,
+      isActive: true,
     },
   },
   data() {
@@ -118,9 +124,6 @@ export default {
   methods: {
     ...mapActions({ user: "setUser" }),
     ...mapActions(["updateHomestay"]),
-    rubbish() {
-      alert("sss");
-    },
   },
   computed: {
     ...mapGetters({ alert: "getSuccess" }),

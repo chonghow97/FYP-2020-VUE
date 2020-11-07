@@ -21,7 +21,6 @@ const getters = { allMenus: (state) => state.menus, registerForm:(state)=> state
 const actions = {
   async userLogin({state},payload){
     const request = await Axios.post("http://localhost:3000/users/login",payload);
-    console.log(request.data,"<---")
     if(request.data){
       state.menuLogin.forEach(element => {
       state.menus.push(element)

@@ -10,15 +10,18 @@ const actions = {
     const request = await axios.get("http://localhost:3000/homestays");
     state.Homestays = request.data;
     request.data.forEach(element => {  
-      state.HomestaysSelect.push({text: element.name+ " - RM " + element.price, value: element._id, price: element.price})
+      if(element.isActive){
+          state.HomestaysSelect.push({text: element.name+ " - RM " + element.price, value: element._id, price: element.price})
+      }
+      
     });
   },
 
-  async setUser({ state, commit }) {
+  async setUser({ state, commit },payload) {
     state.success = false;
     const formData = new FormData();
-    for (var key in state.Homestay) {
-      formData.append(key, state.Homestay[key]);
+    for (var key in payload) {
+      formData.append(key, payload[key]);
     }
 
     const request = await axios.post(
@@ -36,9 +39,10 @@ const actions = {
     state.Homestay = request.data;
   },
 
-  updateHomestay({state},payload){
-    alert(payload);
-    console.log(state);
+  async updateHomestay({state},payload){
+    const respond = await axios.put("http://localhost:3000/homestays",payload);
+    alert(respond.data);
+    console.log(state,respond);
   },
 
   async deleteHomestay({commit},payload){

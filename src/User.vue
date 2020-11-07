@@ -86,6 +86,9 @@ export default {
       const Userdata = VueCookies.get("Userdata");
       store.state.Users.user = Userdata;
       store.state.Users.isLogin = true;
+      store.state.Users.menuLogin.forEach((element) => {
+        store.state.Users.menus.push(element);
+      });
     }
   },
 };
