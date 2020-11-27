@@ -11,7 +11,7 @@ const actions = {
     state.Homestays = request.data;
     request.data.forEach(element => {  
       if(element.isActive){
-          state.HomestaysSelect.push({text: element.name+ " - RM " + element.price, value: element._id, price: element.price})
+          state.HomestaysSelect.push({text: element.name+ " - RM " + element.price, value: {id:element._id,name:element.name}, price: element.price})
       }
       
     });

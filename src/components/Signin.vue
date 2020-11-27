@@ -27,6 +27,11 @@
               ></v-text-field>
             </v-col>
           </v-row>
+          <div class="text-right">
+            <a class="text-decoration-none" @click="forgetPassword"
+              >Forget Password?</a
+            >
+          </div>
         </v-container>
       </v-form>
     </v-card-text>
@@ -47,6 +52,7 @@
 </template>
 
 <script>
+import store from "../store";
 export default {
   data() {
     return {
@@ -63,6 +69,14 @@ export default {
         (v) => (v && v.length >= 8) || "Name must be more than 8 characters",
       ],
     };
+  },
+  methods: {
+    forgetPassword: function () {
+      let email = prompt("Please Insert your email", "timCook@apple.com");
+      if (email) {
+        store.dispatch("forgetPassword", email);
+      }
+    },
   },
   props: ["userLogin"],
   computed: {

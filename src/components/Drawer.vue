@@ -19,6 +19,9 @@
 
       <v-list-item-content>
         <v-list-item-title class="white--text">{{ name }}</v-list-item-title>
+        <v-list-item-subtitle class="white--text">{{
+          email
+        }}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
@@ -60,6 +63,7 @@ export default {
     isLogin: () => store.state.Users.isLogin,
     name: () =>
       `${store.state.Users.user.lName} ${store.state.Users.user.fName}`,
+    email: () => store.state.Users.user.email,
   },
   props: {
     items: { title: String, icon: String, link: String },

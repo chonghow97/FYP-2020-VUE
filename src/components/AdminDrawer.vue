@@ -7,8 +7,7 @@
       </v-list-item-avatar>
 
       <v-list-item-content>
-        <v-list-item-title>name</v-list-item-title>
-        <v-list-item-subtitle>Admin</v-list-item-subtitle>
+        <v-list-item-title>Admin</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
@@ -31,7 +30,7 @@ export default {
   data: () => data,
   props: {
     items: { title: String, icon: String, link: String },
-    login: Boolean,
+    // admin: String,
   },
   methods: {
     Login: function (a) {

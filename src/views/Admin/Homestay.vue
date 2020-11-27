@@ -12,10 +12,13 @@
           <v-list-item-subtitle>Manage your homestay</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-
+      <!-- search bar -->
+      <v-text-field v-model="search">
+        <v-icon slot="prepend" color="green"> mdi-magnify </v-icon>
+      </v-text-field>
       <!-- description, capacity, name -->
       <v-container v-if="homestays.length != 0">
-        <v-card class="mx-auto mt-3" v-for="n in homestays" :key="n.id">
+        <v-card class="mx-auto mt-3" v-for="n in filteredHomestay" :key="n.id">
           <v-list-item class="yellow lighten-4">
             <v-list-item-content>
               <v-list-item-title>
@@ -79,6 +82,7 @@ export default {
   components: { AddHomestay },
   data() {
     return {
+      search: "",
       HomestayForm: { title: "", name: "", action: this.add },
       Dialog: false,
       id: "",
@@ -95,6 +99,11 @@ export default {
   },
   computed: {
     ...mapGetters({ homestays: "AllHomestay" }),
+    filteredHomestay: function () {
+      return this.homestays.filter((homestay) => {
+        return homestay.name.match(this.search);
+      });
+    },
   },
   methods: {
     ...mapActions(["deleteHomestay"]),

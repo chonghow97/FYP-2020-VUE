@@ -27,6 +27,7 @@
 <script>
 export default {
   data: () => ({
+    page: [],
     items: [
       {
         title: "title",

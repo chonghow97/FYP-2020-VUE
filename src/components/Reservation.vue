@@ -153,7 +153,12 @@ export default {
       //add validation from form
       if (this.$refs.reservedForm.validate()) {
         const data = {
-          userID: store.state.Users.user._id,
+          userID: {
+            id: store.state.Users.user._id,
+            name:
+              store.state.Users.user.fName + " " + store.state.Users.user.lName,
+            contact: store.state.Users.user.phone,
+          },
           startDate: this.date[0],
           endDate: this.date[1],
           homestay: this.select,
@@ -166,9 +171,6 @@ export default {
     order: function () {
       return null;
     },
-  },
-  mounted() {
-    console.log(this.reservedHomestay, "asd");
   },
 };
 </script>

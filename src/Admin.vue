@@ -9,7 +9,9 @@
         <template v-slot:append>
           <div>
             <v-spacer></v-spacer>
-            <v-btn block class="red lighten-1 white--text">Logout</v-btn>
+            <v-btn block class="red lighten-1 white--text" @click="logout"
+              >Logout</v-btn
+            >
           </div>
         </template>
       </v-navigation-drawer>
@@ -42,6 +44,7 @@
 import AdminDrawer from "@/components/AdminDrawer.vue";
 import { mapGetters } from "vuex";
 import store from "./store";
+import VueCookies from "vue-cookies";
 export default {
   name: "App",
 
@@ -51,10 +54,24 @@ export default {
       right: null,
       dialog: false,
       drawer: true,
+      admin: {},
     };
   },
+  methods: {
+    logout: () => {
+      VueCookies.remove("AdminData");
+      window.location.href = "/login";
+    },
+  },
   beforeCreate: () => {
-    if (!store.state.Admin.isLogin) window.location.href = "/";
+    if (VueCookies.get("AdminData")) {
+      const Admindata = VueCookies.get("AdminData");
+      store.commit("login", Admindata);
+      this.admin = Admindata;
+    } else {
+      //kick
+      window.location.href = "/login";
+    }
   },
   computed: { ...mapGetters(["allAdminMenus"]) },
 };

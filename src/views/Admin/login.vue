@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import store from "../../store";
 export default {
   data() {
     return {
@@ -48,7 +48,11 @@ export default {
       password: "",
     };
   },
-  methods: { ...mapActions({ login: "adminLogin" }) },
+  methods: {
+    async login(password) {
+      await store.dispatch("adminLogin", password);
+    },
+  },
 };
 </script>
 

@@ -80,7 +80,7 @@ export default {
     ...mapGetters(["allMenus"]),
     isLogin: () => store.state.Users.isLogin,
   },
-  mounted() {
+  created() {
     this.setHomestays();
     if (VueCookies.get("Userdata")) {
       const Userdata = VueCookies.get("Userdata");

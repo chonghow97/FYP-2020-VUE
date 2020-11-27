@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const state = {};
+const state = {Orders: []};
 const actions = {
   async valiationReservation({state},payload){
     try {
@@ -23,8 +23,8 @@ const actions = {
   },
   //get user order data
    async getReservation({state},payload){
-    await Axios.get("http://localhost:3000/reservation/"+payload);
-    console.log(state);
+    const respond = await Axios.get("http://localhost:3000/reservation/"+payload);
+    state.Orders = respond.data;
   }
 };
 const mutations = {};
