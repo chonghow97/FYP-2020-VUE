@@ -14,7 +14,9 @@
     <!-- is-login -->
     <v-list-item two-line v-else>
       <v-list-item-avatar>
-        <img src="https://randomuser.me/api/portraits/men/82.jpg" />
+        <img
+          src="https://cdn.discordapp.com/avatars/400346207358025728/4bdd20f6b8f96b109191d6cde04595cd.png"
+        />
       </v-list-item-avatar>
 
       <v-list-item-content>

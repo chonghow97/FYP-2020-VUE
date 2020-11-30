@@ -7,6 +7,7 @@
             <th class="text-left">Name</th>
             <th class="text-left">Check In</th>
             <th class="text-left">Check Out</th>
+            <th class="text-left">Amount</th>
             <th class="text-left">actions</th>
           </tr>
         </thead>
@@ -15,12 +16,13 @@
             <td>{{ item.homestay.name }}</td>
             <td>{{ item.startDate.slice(0, 10) + " (9a.m.)" }}</td>
             <td>{{ item.endDate.slice(0, 10) + " (12p.m.)" }}</td>
+            <td>RM {{ item.amount }}</td>
             <td v-if="!item.isPaid">
               <!-- <v-btn color="success" outlined @click="pay(item._id)">Pay</v-btn> -->
               <v-btn
                 color="success"
                 outlined
-                @click="pay($children[0], item._id)"
+                @click="pay({ amount: item.amount, id: item._id })"
                 >Pay</v-btn
               >
             </td>
@@ -35,6 +37,7 @@
       :dialog="paymentDialog"
       :id="this.homestayID"
       @closeDialog="closeDialog"
+      ref="pay"
     />
   </div>
 </template>
@@ -56,10 +59,8 @@ export default {
     },
   },
   methods: {
-    pay(children, id) {
-      this.paymentDialog = true;
-      console.log(children);
-      this.homestayID = id;
+    async pay(homestay) {
+      await this.$refs.pay.coolMethod(homestay);
     },
     closeDialog(payload) {
       this.paymentDialog = payload;

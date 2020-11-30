@@ -5,7 +5,6 @@ import Admin from "../Admin.vue";
 import Home from "@/views/User/Home.vue";
 import About from "@/views/User/About.vue";
 import Gallery from "@/views/User/Gallery.vue";
-import Calendar from "@/views/Admin/Calendar.vue";
 import Dashboard from "@/views/Admin/Dashboard.vue";
 import Homestay from "@/views/Admin/Homestay.vue";
 import galleryDetail from "@/views/User/galleryDetail.vue";
@@ -59,11 +58,6 @@ const routes = [
         name: "Dashboard",
         path: "/Dashboard",
         component: Dashboard,
-      },
-      {
-        name: "Calendar",
-        path: "/Calendar",
-        component: Calendar,
       },
       {
         name: "Homestay",

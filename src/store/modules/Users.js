@@ -22,7 +22,7 @@ const actions = {
   async forgetPassword({state},payload){
     try {
       const request = await Axios.post("http://localhost:3000/users/password",{email: payload});
-      console.log(request.data);
+      alert(request.data);
     } catch (error) {
       alert("email not found please try again");
     }

@@ -36,56 +36,53 @@ import AdyenCheckout from "@adyen/adyen-web";
 import "@adyen/adyen-web/dist/adyen.css";
 export default {
   data() {
-    return {};
+    return {
+      dialog: false,
+      amount: 0,
+    };
   },
-  props: { dialog: Boolean, id: { String } },
+  props: { id: { String } },
   methods: {
     closeDialog: function () {
-      this.$emit("closeDialog", false);
+      location.reload();
     },
-    coolMethod: function () {
-      alert("cslog");
-    },
-  },
-  computed: {
-    homestay: () => this.id,
-  },
-  async mounted() {
-    const request = await Axios.get("http://localhost:3000/payment");
-    var vm = this;
-    async function handleOnSubmit(state, component) {
-      state.isValid; // True or false. Specifies if all the information that the shopper provided is valid.
-      state.data; // Provides the data that you need to pass in the `/payments` call.
-      component; // Provides the active component instance that called this event.
+    coolMethod: async function (homestay) {
+      this.dialog = true;
+      this.amount = homestay.amount;
+      let request = await Axios.get(
+        `http://localhost:3000/payment/${homestay.amount}`
+      );
+      let configuration = {
+        showPaymentMethods: true,
+        showStoredPaymentMethods: true,
+        amount: {
+          value: this.amount * 100,
+          currency: "MYR",
+        },
+        onSubmit: handleOnSubmit,
+        paymentMethodsResponse: request.data,
+        clientKey: "test_NGJ2C4SERREHNI4ZG44AQ3WVAQ3QK2OP",
+        locale: "en_US",
+        environment: "test",
+      };
+      console.log(configuration.amount, " ", homestay);
 
-      const request = await Axios.put("http://localhost:3000/payment", {
-        data: state.data,
-        homestay: vm.id,
-      });
-      checkout.createFromAction(request.data.action).mount("#pay");
-    }
-    const configuration = {
-      showPaymentMethods: true,
-      showStoredPaymentMethods: true,
-      amount: {
-        value: 1,
-        currency: "MYR",
-      },
-      onSubmit: handleOnSubmit,
-      paymentMethodsResponse: request.data,
-      clientKey: "test_NGJ2C4SERREHNI4ZG44AQ3WVAQ3QK2OP",
-      locale: "en_US",
-      environment: "test",
-    };
+      async function handleOnSubmit(state, component) {
+        state.isValid; // True or false. Specifies if all the information that the shopper provided is valid.
+        component; // Provides the active component instance that called this event.
 
-    const checkout = new AdyenCheckout(configuration);
-    // console.log(checkout.create("card"));
-    if (this.dialog) {
-      // console.log("asd");
+        let request = await Axios.put("http://localhost:3000/payment", {
+          data: state.data,
+          homestay: homestay,
+        });
+        checkout.createFromAction(request.data.action).mount("#pay");
+      }
+
+      let checkout = new AdyenCheckout(configuration);
+
       checkout
         .create("dropin", {
           onSubmit: handleOnSubmit,
-          amount: { value: 1, currency: "MYR" },
           installmentOptions: {},
           paymentMethodsConfiguration: {},
           openFirstPaymentMethod: true,
@@ -96,7 +93,10 @@ export default {
           showPayButton: true,
         })
         .mount(this.$refs.card);
-    }
+    },
+  },
+  computed: {
+    homestay: () => this.id,
   },
 };
 </script>

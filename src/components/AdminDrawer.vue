@@ -3,7 +3,9 @@
     <!-- is-login -->
     <v-list-item two-line>
       <v-list-item-avatar>
-        <img src="https://randomuser.me/api/portraits/men/82.jpg" />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBxpj2OOGlOnaXrRmZQ0-s3nOhCBwJEFfwZQ&usqp=CAU"
+        />
       </v-list-item-avatar>
 
       <v-list-item-content>

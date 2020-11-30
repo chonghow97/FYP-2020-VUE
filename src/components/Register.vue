@@ -89,17 +89,17 @@
 import store from "../store";
 const data = {
   show1: false,
-  password: "12345678",
-  firstname: "Loh",
-  lastname: "Kean Ming",
-  number: "184213618",
+  password: "",
+  firstname: "",
+  lastname: "",
+  number: "",
   name: "",
   valid: "",
   nameRules: [
     (v) => !!v || "Name is required",
     (v) => (v && v.length <= 30) || "Name must be less than 10 characters",
   ],
-  email: "keanming@gmail.com",
+  email: "",
   emailRules: [
     (v) => !!v || "E-mail is required",
     (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",

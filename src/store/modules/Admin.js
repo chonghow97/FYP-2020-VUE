@@ -9,7 +9,6 @@ const state = {
       link: "/Dashboard",
     },
     { title: "HomeStay", icon: "mdi-home-account", link: "/Homestay" },
-    { title: "Calendar", icon: "mdi-calendar", link: "/Calendar" },
   ],
   admin: {},
   isLogin: false,
